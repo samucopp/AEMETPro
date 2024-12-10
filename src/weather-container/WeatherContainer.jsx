@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getCurrentWeather, getGeoLocation } from '../utils/ApiCalls';
+import Input from "../input/Input";
+import Button from '../button/Button';
 
 export default function WeatherContainer() {
   const [city, setCity] = useState('');
@@ -30,12 +32,10 @@ export default function WeatherContainer() {
     }
   };
 
-  // Efecto para actualizar el fondo del body cuando se recibe los datos del clima
   useEffect(() => {
     if (weatherData) {
       const weatherCondition = weatherData.weather.weather[0].main;
 
-      // Cambiar el fondo dependiendo de la condición del clima
       if (weatherCondition === 'Rain') {
         document.body.style.backgroundImage = 'url(/images/lluvia.jpg)';
       } else if (weatherCondition === 'Clear') {
@@ -43,13 +43,12 @@ export default function WeatherContainer() {
       } else if (weatherCondition === 'Clouds') {
         document.body.style.backgroundImage = 'url(/images/nubes.jpg)';
       } else {
-        // Si no coincide con las condiciones anteriores, se puede restablecer a un fondo predeterminado
         document.body.style.backgroundImage = 'none';
         document.body.style.backgroundColor = '#f1f5f9';
       }
 
-      document.body.style.backgroundSize = 'cover';  // Asegura que la imagen cubra todo el fondo
-      document.body.style.backgroundPosition = 'center';  // Centra la imagen de fondo
+      document.body.style.backgroundSize = 'cover';
+      document.body.style.backgroundPosition = 'center';
     }
   }, [weatherData]);
 
@@ -57,16 +56,11 @@ export default function WeatherContainer() {
     <div className="weather-container">
       <div className="search-box">
         <form onSubmit={handleSubmit}>
-          <input
-            type="text"
+          <Input
             value={city}
             onChange={(e) => setCity(e.target.value)}
-            placeholder="Ingresa una ciudad"
-            required
           />
-          <button type="submit" disabled={loading}>
-            {loading ? 'Buscando...' : 'Buscar'}
-          </button>
+          <Button loading={loading} />
         </form>
       </div>
 

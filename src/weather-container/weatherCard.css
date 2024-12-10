@@ -8,11 +8,9 @@ body {
   transition: background-color 0.3s ease, background-image 0.3s ease;
 }
 
-
-
 .search-box {
   position: fixed;
-  top: 20%; /* Cambiado de 50% a 20% para moverlo más arriba */
+  top: 20%; 
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90%;
@@ -29,36 +27,6 @@ body {
   display: flex;
   gap: 1rem;
   justify-content: center;
-}
-
-.search-box input {
-  flex: 1;
-  padding: 0.5rem 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 1rem;
-  max-width: 250px;
-  background-color: rgba(255, 255, 255, 0.9);
-}
-
-.search-box button {
-  padding: 0.5rem 1.5rem;
-  background-color: rgba(14, 165, 233, 0.9);
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 0.3s ease;
-}
-
-.search-box button:hover {
-  background-color: rgba(14, 165, 233, 1);
-}
-
-.search-box button:disabled {
-  background-color: rgba(156, 163, 175, 0.9);
-  cursor: not-allowed;
 }
 
 .error-message {
