@@ -1,3 +1,4 @@
+import React from 'react';
 import WeatherContainer from '../src/weather-container/WeatherContainer';
 import '../src/weather-container/weatherCard.css';
 
