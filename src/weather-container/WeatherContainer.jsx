@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { getCurrentWeather, getGeoLocation } from '../utils/ApiCalls';
 import Input from "../input/Input";
 import Button from '../button/Button';

@@ -11,7 +11,7 @@ async function getGeoLocation(city) {
       throw new Error('Ciudad no encontrada');
     }
     
-    return data[0];
+    return data;
   }
 
   async function getCurrentWeather(lat, lon) {
