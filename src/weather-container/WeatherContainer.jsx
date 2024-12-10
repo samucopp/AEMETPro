@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { getCurrentWeather, getGeoLocation } from '../utils/ApiCalls';
 import Input from "../input/Input";
 import Button from '../button/Button';
@@ -10,29 +10,32 @@ export default function WeatherContainer() {
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError(null);
+  e.preventDefault();
+  setLoading(true);
+  setError(null);
 
-    try {
-      const geoData = await getGeoLocation(city);
-      const weather = await getCurrentWeather(geoData.lat, geoData.lon);
+  try {
+    const geoData = await getGeoLocation(city);
+    const weatherResponse = await getCurrentWeather(geoData.lat, geoData.lon);
+    
+    
+    setWeatherData({
+      name: geoData.name,
+      country: geoData.country,
+      weather: weatherResponse,  
+      lat: geoData.lat,
+      lon: geoData.lon
+    });
 
-      setWeatherData({
-        name: geoData.name,
-        country: geoData.country,
-        state: geoData.state,
-        weather: weather,
-      });
-    } catch (err) {
-      setError(err.message || 'Error al buscar el clima');
-      setWeatherData(null);
-    } finally {
-      setLoading(false);
-    }
-  };
+  } catch (err) {
+    setError(err.message || 'Error al buscar el clima');
+    setWeatherData(null);
+  } finally {
+    setLoading(false);
+  }
+};
 
-  useEffect(() => {
+   useEffect(() => {
     if (weatherData) {
       const weatherCondition = weatherData.weather.weather[0].main;
 
@@ -99,9 +102,18 @@ export default function WeatherContainer() {
                 💨 Viento: <span>{Math.round(weatherData.weather.wind.speed * 3.6)} km/h</span>
               </div>
             </div>
+           
+            
+
           </div>
+          
         </div>
+        
+      
       )}
+
+
+
     </div>
-  );
+  ); 
 }
