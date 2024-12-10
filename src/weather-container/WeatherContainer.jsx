@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { getCurrentWeather, getGeoLocation } from '../utils/ApiCalls';
-
 
 export default function WeatherContainer() {
   const [city, setCity] = useState('');
@@ -8,24 +7,20 @@ export default function WeatherContainer() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
-    
+
     try {
       const geoData = await getGeoLocation(city);
-      const weather = await getCurrentWeather(
-        geoData.lat,
-        geoData.lon
-      );
-      
+      const weather = await getCurrentWeather(geoData.lat, geoData.lon);
+
       setWeatherData({
         name: geoData.name,
         country: geoData.country,
         state: geoData.state,
-        weather: weather
+        weather: weather,
       });
     } catch (err) {
       setError(err.message || 'Error al buscar el clima');
@@ -34,6 +29,29 @@ export default function WeatherContainer() {
       setLoading(false);
     }
   };
+
+  // Efecto para actualizar el fondo del body cuando se recibe los datos del clima
+  useEffect(() => {
+    if (weatherData) {
+      const weatherCondition = weatherData.weather.weather[0].main;
+
+      // Cambiar el fondo dependiendo de la condición del clima
+      if (weatherCondition === 'Rain') {
+        document.body.style.backgroundImage = 'url(/images/lluvia.jpg)';
+      } else if (weatherCondition === 'Clear') {
+        document.body.style.backgroundImage = 'url(/images/sol.jpg)';
+      } else if (weatherCondition === 'Clouds') {
+        document.body.style.backgroundImage = 'url(/images/nubes.jpg)';
+      } else {
+        // Si no coincide con las condiciones anteriores, se puede restablecer a un fondo predeterminado
+        document.body.style.backgroundImage = 'none';
+        document.body.style.backgroundColor = '#f1f5f9';
+      }
+
+      document.body.style.backgroundSize = 'cover';  // Asegura que la imagen cubra todo el fondo
+      document.body.style.backgroundPosition = 'center';  // Centra la imagen de fondo
+    }
+  }, [weatherData]);
 
   return (
     <div className="weather-container">
@@ -65,7 +83,7 @@ export default function WeatherContainer() {
               {weatherData.country && `, ${weatherData.country}`}
             </h2>
           </div>
-          
+
           <div className="weather-content">
             <div className="temperature-box">
               <div className="temperature">
@@ -75,7 +93,7 @@ export default function WeatherContainer() {
                 {weatherData.weather.weather[0].description}
               </div>
             </div>
-            
+
             <div className="weather-details">
               <div className="detail-item">
                 💧 Humedad: <span>{weatherData.weather.main.humidity}%</span>
