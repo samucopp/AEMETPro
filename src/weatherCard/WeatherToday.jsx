@@ -48,6 +48,9 @@ function WeatherToday({ currentWeather, next24Hours }) {
             <div className="current-weather">
                 <div className="current-weather__main">
                     <div className="current-weather__temp-container">
+                        <span className="current-weather__city">
+                        
+                        </span>
                         <span className="current-weather__icon">
                             {getWeatherEmoji(currentWeather.weather[0].id)}
                         </span>

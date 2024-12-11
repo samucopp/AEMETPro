@@ -3,6 +3,15 @@ import { getFiveDayForecast } from '../utils/ApiCalls';
 import WeatherToday from './WeatherToday';
 import WeatherFiveDays from './WeatherFiveDays';
 import { WeatherTodayWind } from '../wind/Wind'
+import { WeatherTodayRise } from '../sunrise/Sunrise';
+import { WeatherTodaySunset } from '../sunset/Sunset';
+import { WeatherTodayHuminity } from '../huminity/Huminity';
+import { WeatherTodayPressure } from '../pressure/Presure';
+import { WeatherTodayGroundPressure } from '../groundPressure/GroundPressure';
+import { WeatherTodayVisibility } from '../visibility/Visibility';
+
+
+
 import './WeatherCard.css';
 
 function WeatherCard({ city }) {
@@ -69,12 +78,36 @@ function WeatherCard({ city }) {
                 currentWeather={currentWeather} 
                 next24Hours={next24Hours} 
             />
+             <WeatherTodayWind 
+                currentWeather={currentWeather}
+            />
+            <WeatherTodayRise 
+                currentWeather={currentWeather}
+            />
+            <WeatherTodaySunset 
+                currentWeather={currentWeather}
+            />
+
+            <WeatherTodayHuminity 
+                currentWeather={currentWeather}
+            />
+
+            <WeatherTodayPressure 
+                currentWeather={currentWeather}
+            />
+
+            <WeatherTodayGroundPressure 
+                currentWeather={currentWeather}
+            />
+
+            <WeatherTodayVisibility 
+                currentWeather={currentWeather}
+            />
+
             <WeatherFiveDays 
                 dailyForecast={dailyForecast} 
             />
-               <WeatherTodayWind 
-                currentWeather={currentWeather}
-            />
+              
         </div>
     );
 }
