@@ -1,33 +1,61 @@
 import './wind.css';
 
 export function WeatherTodayWind({ currentWeather }) {
-    if (!currentWeather || !currentWeather.wind) {
+    if (!currentWeather?.wind) {
         return null;
     }
 
+    const windSpeed = Math.round(currentWeather.wind.speed * 3.6); 
+    const windGust = currentWeather.wind.gust ? Math.round(currentWeather.wind.gust * 3.6) : null;
+    const windDirection = currentWeather.wind.deg;
+
     return (
-        <div className="current_wind">
-            <h3>Información del Viento</h3>
-            <div>
-                <p><span>☁️
-                </span></p>
-                <p>
-                    <span>Velocidad:</span>{' '}
-                    {Math.round(currentWeather.wind.speed * 3.6)} km/h
-                </p>
-                <p>
-                    <span>Dirección:</span>{' '}
-                    {Math.round(currentWeather.wind.deg)}°
-                </p>
-                {currentWeather.wind.gust && (
-                    <p>
-                        <span>Ráfagas:</span>{' '}
-                        {Math.round(currentWeather.wind.gust * 3.6)} km/h
-                    </p>
-                )}
+        <div className="wind-card">
+            <div className="wind-header">
+                <span className="wind-icon">💨</span>
+                <h3>VIENTO</h3>
+            </div>
+            
+            <div className="wind-content">
+                <div className="wind-info">
+                    <div className="wind-row">
+                        <span className="wind-label">Viento</span>
+                        <span className="wind-value">{windSpeed} km/h</span>
+                    </div>
+                    
+                    
+                    
+                    <div className="wind-row">
+                        <span className="wind-label">Dirección</span>
+                        <span className="wind-value">{windDirection}° SE</span>
+                    </div>
+
+                    <div className="wind-row">
+                        {windGust ? (
+                            <>
+                                <span className="wind-label">Rachas</span>
+                                <span className="wind-value">{windGust} km/h</span>
+                            </>
+                        ) : (
+                            <span className="wind-no-gust">No se prevén rachas de viento</span>
+                        )}
+                    </div>
+                </div>
+                
+                <div className="wind-compass">
+                    <div className="compass-circle">
+                        <div className="compass-arrow" style={{ transform: `rotate(${windDirection}deg)` }}>
+                            ↑
+                        </div>
+                        <div className="compass-labels">
+                            <span className="compass-n">N</span>
+                            <span className="compass-s">S</span>
+                            <span className="compass-e">E</span>
+                            <span className="compass-w">O</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );
 }
-
-export default WeatherTodayWind;
