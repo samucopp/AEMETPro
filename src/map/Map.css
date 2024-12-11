@@ -7,3 +7,11 @@
     height: 100%;
     width: 100%;
 }
+
+.precipitation-layer,
+.clouds-layer,
+.pressure-layer,
+.temp-layer,
+.wind-layer {
+    filter: contrast(1000%);
+}
