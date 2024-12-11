@@ -6,7 +6,7 @@ const Input = ({
   placeholder = 'Ingresa una ciudad',
 }) => {
   return (
-    <input
+    <input id="input-search-bar"
       type="text"
       value={value}
       onChange={onChange}
