@@ -9,6 +9,7 @@ import { WeatherTodayHuminity } from '../huminity/Huminity';
 import { WeatherTodayPressure } from '../pressure/Presure';
 import { WeatherTodayGroundPressure } from '../groundPressure/GroundPressure';
 import { WeatherTodayVisibility } from '../visibility/Visibility';
+import Map from '../map/Map';
 
 
 
@@ -78,7 +79,7 @@ function WeatherCard({ city }) {
                 currentWeather={currentWeather} 
                 next24Hours={next24Hours} 
             />
-             <WeatherTodayWind 
+            <WeatherTodayWind 
                 currentWeather={currentWeather}
             />
             <WeatherTodayRise 
@@ -107,7 +108,10 @@ function WeatherCard({ city }) {
             <WeatherFiveDays 
                 dailyForecast={dailyForecast} 
             />
-              
+
+            <Map 
+                city={city}
+            />
         </div>
     );
 }
