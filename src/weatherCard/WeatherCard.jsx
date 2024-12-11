@@ -14,7 +14,7 @@ import { WeatherTodayVisibility } from '../visibility/Visibility';
 
 import './WeatherCard.css';
 
-function WeatherCard({ city }) {
+function WeatherCard({ city, addToFavorites }) {
     const [currentWeather, setCurrentWeather] = useState(null);
     const [next24Hours, setNext24Hours] = useState(null);
     const [dailyForecast, setDailyForecast] = useState(null);
@@ -70,9 +70,13 @@ function WeatherCard({ city }) {
 
     return (
         <div className="weather-card">
-            <div className= "card-header">
+            <div className="card-header">
                 <h2 className="current-weather__city">{city.name}</h2>
-                <button className = "favorites">Favoritos</button>
+                <button 
+                    className="favorites" 
+                    onClick={() => addToFavorites(city)}>
+                    Añadir a Favoritos
+                </button>
             </div>
             <WeatherToday 
                 currentWeather={currentWeather} 

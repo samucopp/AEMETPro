@@ -67,32 +67,39 @@ function WeatherToday({ currentWeather, next24Hours }) {
             </div>
 
             {/* Próximas 24 horas */}
-            <div className="section-title">Próximas 24 horas</div>
-            <div className="hourly-forecast">
-                {next24Hours.map((period) => {
-                    const date = new Date(period.dt * 1000);
-                    const hour = date.getHours();
-                    
-                    return (
-                        <div key={period.dt} className="hourly-item">
-                            <div className="hourly-time">
-                                {hour === new Date().getHours() ? 'Ahora' : `${hour}:00`}
-                            </div>
-                            <div className="hourly-icon">
-                                {getWeatherEmoji(period.weather[0].id)}
-                            </div>
-                            <div className="hourly-temp">
-                                {Math.round(period.main.temp)}°
-                            </div>
-                            {period.pop > 0 && (
-                                <div className="hourly-pop">
-                                    {Math.round(period.pop * 100)}%
+            {next24Hours && (
+                <>
+
+                    <div className="section-title">Próximas 24 horas</div>
+                    <div className="hourly-forecast">
+                        {next24Hours.map((period) => {
+                            const date = new Date(period.dt * 1000);
+                            const hour = date.getHours();
+
+                            return (
+                                <div key={period.dt} className="hourly-item">
+                                    <div className="hourly-time">
+                                        {hour === new Date().getHours() ? 'Ahora' : `${hour}:00`}
+                                    </div>
+                                    <div className="hourly-icon">
+                                        {getWeatherEmoji(period.weather[0].id)}
+                                    </div>
+                                    <div className="hourly-temp">
+                                        {Math.round(period.main.temp)}°
+                                    </div>
+                                    {period.pop > 0 && (
+                                        <div className="hourly-pop">
+                                            {Math.round(period.pop * 100)}%
+                                        </div>
+                                    )}
                                 </div>
-                            )}
-                        </div>
-                    );
-                })}
-            </div>
+                            );
+                        })}
+                    </div>
+                </>
+
+
+            )}
         </div>
     );
 }
