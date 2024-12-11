@@ -1,5 +1,4 @@
-// Wind.jsx
-import React from 'react';
+
 
 export function WeatherTodayWind({ currentWeather }) {
     if (!currentWeather || !currentWeather.wind) {
