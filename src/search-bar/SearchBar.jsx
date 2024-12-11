@@ -2,6 +2,7 @@ import Button from '../button/Button';
 import Input from '../input/Input';
 import { getGeoLocation } from '../utils/ApiCalls';
 import { useState } from 'react';
+import DropDownMenu from '../drop-down-menu/DropDownMenu';
 import './SearchBar.css';
 
 function SearchBar({ onSubmit }) {
@@ -29,6 +30,7 @@ function SearchBar({ onSubmit }) {
         setCityList([]);
         onSubmit(city);
     }
+
     return (
         <>
             <div className="search-bar">
@@ -36,14 +38,16 @@ function SearchBar({ onSubmit }) {
                     <Input
                         value={city}
                         onChange={(e) => setCity(e.target.value)}
+                        placeholder="Buscar ciudad..."
                     />
                     <Button loading={loading} />
                 </form>
-                <div className="drop-down-menu">
-                    {cityList.map((city) => (
-                        <div onClick={() => handleSubmit(city)} key={city.state}>{city.name}</div>
-                    ))}
-                </div>
+                {cityList.length > 0 && (
+                    <DropDownMenu 
+                        cityList={cityList}
+                        onCitySelect={handleSubmit}
+                    />
+                )}
             </div>
             {error && (
                 <div className="error-message">{error}</div>
