@@ -1,6 +1,6 @@
 
 
-.search-bar form button {
+.search-bar button {
     padding: 16px 24px;
     border: none;
     border-radius: 12px;
@@ -11,12 +11,12 @@
     transition: all 0.3s ease;
 }
 
-.search-bar form button:hover {
+.search-bar button:hover {
     background: #2563eb;
     transform: translateY(-1px);
 }
 
-.search-bar form button:active {
+.search-bar button:active {
     transform: translateY(1px);
 }
 
