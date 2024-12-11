@@ -1,0 +1,51 @@
+
+
+.search-bar form button {
+    padding: 16px 24px;
+    border: none;
+    border-radius: 12px;
+    background: #3b82f6;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.search-bar form button:hover {
+    background: #2563eb;
+    transform: translateY(-1px);
+}
+
+.search-bar form button:active {
+    transform: translateY(1px);
+}
+
+
+
+.error-message {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 20px;
+    right: 20px;
+    color: #dc2626;
+    text-align: center;
+    padding: 12px;
+    background-color: rgba(220, 38, 38, 0.1);
+    border-radius: 8px;
+    font-size: 14px;
+    backdrop-filter: blur(10px);
+}
+
+@media (max-width: 640px) {
+    .search-bar form {
+        flex-direction: column;
+    }
+
+    .search-bar form button {
+        width: 100%;
+    }
+
+    .search-bar {
+        padding: 0 16px;
+    }
+}
