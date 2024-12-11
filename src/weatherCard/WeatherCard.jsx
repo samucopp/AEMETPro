@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { getFiveDayForecast } from '../utils/ApiCalls';
 import WeatherToday from './WeatherToday';
 import WeatherFiveDays from './WeatherFiveDays';
+import { WeatherTodayWind } from '../wind/Wind'
 import './WeatherCard.css';
 
 function WeatherCard({ city }) {
@@ -70,6 +71,9 @@ function WeatherCard({ city }) {
             />
             <WeatherFiveDays 
                 dailyForecast={dailyForecast} 
+            />
+               <WeatherTodayWind 
+                currentWeather={currentWeather}
             />
         </div>
     );
