@@ -1,5 +1,5 @@
 
-.current_visibility {
+.current_wind {
     text-align: center;
     margin-bottom: 24px;
     padding: 20px;
@@ -7,7 +7,7 @@
     border-radius: 16px;
 }
 
-.current_visibility h3 {
+.current_wind h3 {
     font-size: 14px;
     color: #8b939c;
     text-transform: uppercase;
@@ -15,7 +15,7 @@
     margin: 24px 0 12px 0;
 }
 
-.current_visibility div {
+.current_wind div {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -23,32 +23,32 @@
     color: #e2e8f0;
 }
 
-.current_visibility p {
+.current_wind p {
     margin: 4px 0;
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
-.current_visibility span {
+.current_wind span {
     font-size: 16px;
 }
 
-.current_visibility span:first-child {
+.current_wind span:first-child {
     font-size: 24px;
 }
 
 @media (max-width: 480px) {
-    .current_visibility {
+    .current_wind {
         padding: 16px;
         margin: 10px 0;
     }
     
-    .current_visibility h3 {
+    .current_wind h3 {
         margin: 12px 0 8px 0;
     }
     
-    .current_visibility div {
+    .current_wind div {
         gap: 8px;
     }
 }

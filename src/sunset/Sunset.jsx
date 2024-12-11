@@ -1,4 +1,4 @@
-
+import './sunset.css';
 
 export function WeatherTodaySunset({ currentWeather }) {
     if (!currentWeather || !currentWeather.main) {

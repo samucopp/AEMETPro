@@ -1,9 +1,16 @@
+import './sunrise.css';
 
-
-export function WeatherTodayRise({ currentWeather }) {
-    if (!currentWeather || !currentWeather.main) {
+export function WeatherTodayRise({ datosAmanecer, zonaHoraria }) {
+    if (!datosAmanecer?.sunrise) {
         return null;
     }
+
+    const horaAmanecer = new Date((datosAmanecer.sunrise + zonaHoraria) * 1000)
+        .toLocaleTimeString('es-ES', { 
+            hour: '2-digit', 
+            minute: '2-digit',
+            hour12: false
+        });
 
     return (
         <div className="current_rise">
@@ -11,10 +18,9 @@ export function WeatherTodayRise({ currentWeather }) {
             <div>
                 <p><span>🌅</span></p>
                 <p>
-                    <span>Manana:</span>{' '}
-                    {new Date(currentWeather.sunrise * 1000).toLocaleTimeString('es-ES')}
+                    <span>Hora:</span>{' '}
+                    {horaAmanecer}
                 </p>
-               
             </div>
         </div>
     );
