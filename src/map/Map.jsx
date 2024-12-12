@@ -45,13 +45,12 @@ export default function Map({ city }) {
     };
 
     return (
-        <div className={"mapa-container "+ maps[currentIndex].className}>
-                <div className="map-title ">{maps[currentIndex].name}</div>
-
+        <div className={"map-section " + maps[currentIndex].className}>
+            <div className="map-title ">{maps[currentIndex].name}</div>
+            <div className="map-container">
                 <button className="arrow left" onClick={prevMap}>◀</button>
-                
                 <MapContainer
-                    className="mapa-completo"
+                    className="complete-map"
                     center={[city.lat, city.lon]}
                     zoom={8}
                     scrollWheelZoom={true}
@@ -67,9 +66,7 @@ export default function Map({ city }) {
                         opacity={1}
                     />
                 </MapContainer>
-                
                 <button className="arrow right" onClick={nextMap}>▶</button>
-
                 <div className="indicators">
                     {maps.map((_, index) => (
                         <span
@@ -79,6 +76,7 @@ export default function Map({ city }) {
                         ></span>
                     ))}
                 </div>
+            </div>
         </div>
     );
 }
