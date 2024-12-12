@@ -1,0 +1,102 @@
+/* Contenedor principal */
+.mapa-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    height: 400px;
+    border-radius: 20px;
+}
+
+.mapa-completo{
+    height: 400px; 
+    width: 600px;
+}
+
+
+/* Título del mapa */
+.map-title {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 5px 10px;
+    border-radius: 4px;
+    z-index: 1000;
+}
+
+/* Flechas minimalistas */
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    font-size: 2rem;
+    color: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    z-index: 1000;
+    padding: 5px;
+    transition: transform 0.2s ease;
+    outline: none;
+}
+
+.arrow:focus {
+    outline: none;
+}
+
+.arrow:hover {
+    transform: translateY(-50%) scale(1.2);
+}
+
+.arrow.left {
+    left: 10px;
+}
+
+.arrow.right {
+    right: 10px;
+}
+
+/* Indicadores minimalistas */
+.indicators {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.dot {
+    height: 8px;
+    width: 8px;
+    margin: 0 4px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dot.active {
+    background-color: white;
+}
+
+
+.leaflet-control-container {
+    visibility: hidden;
+}
+
+.precipitation-map .layer-map {
+    filter: contrast(1000%) saturate(500%);
+}
+
+.mapa-container .base-map {
+    filter: invert(100%);
+}

@@ -2,6 +2,10 @@ import { useEffect, useState } from 'react';
 import { getFiveDayForecast, getCurrentWeather } from '../utils/ApiCalls';
 import WeatherToday from './WeatherToday';
 import WeatherFiveDays from './WeatherFiveDays';
+import SliderMaps from '../map/Map';
+
+
+
 import './WeatherCard.css';
 
 function WeatherCard({ city, addToFavorites }) {
@@ -73,7 +77,7 @@ function WeatherCard({ city, addToFavorites }) {
             </div>
             
             <WeatherToday 
-                currentWeather={currentWeather}
+                currentWeather={currentWeather} 
                 forecastWeather={forecastWeather}
                 next24Hours={next24Hours}
                 cityName={city.name}
@@ -83,6 +87,10 @@ function WeatherCard({ city, addToFavorites }) {
             
             <WeatherFiveDays 
                 dailyForecast={dailyForecast} 
+            />
+
+            <SliderMaps 
+                city={city}
             />
         </div>
     );
