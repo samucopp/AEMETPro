@@ -25,8 +25,7 @@ function WeatherToday({ currentWeather, forecastWeather, next24Hours, cityName, 
     };
 
     useEffect(() => {
-        if (forecastWeather) {
-            const weatherMain = forecastWeather.weather[0].main;
+       
         if (forecastWeather) {
             const weatherMain = forecastWeather.weather[0].main;
             const appElement = document.querySelector('.app-container');
