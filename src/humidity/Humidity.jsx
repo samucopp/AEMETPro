@@ -1,5 +1,5 @@
-
-export function WeatherTodayHuminity({ currentWeather }) {
+import './humidity.css';
+export function WeatherTodayHumidity({ currentWeather }) {
     if (!currentWeather || !currentWeather.main) {
         return null;
     }

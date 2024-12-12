@@ -27,8 +27,20 @@ export default function App() {
     }, []);
 
     useEffect(() => {
-        saveToLocalStorage("favorites", favorites);
+        if(favorites.length !== 0){
+            saveToLocalStorage("favorites", favorites);
+        }
     }, [favorites]);
+
+    const addToFavorites = (city) => {
+        setFavorites((prevFavorites) => {
+            // Evitar duplicados
+            if (prevFavorites.some((fav) => fav.name === city.name)) {
+                return prevFavorites;
+            }
+            return [...prevFavorites, city]; // Almacenar toda la ciudad
+        });
+    };
 
     const toggleFavorite = (item) => {
         setFavorites((prevFavorites) =>
@@ -45,11 +57,11 @@ export default function App() {
                 <SearchBar onSubmit={handleCitySelect} />
                 {selectedCity && (
                     <div className="weather-wrapper">
-                        <WeatherCard city={selectedCity} />
+                        <WeatherCard city={selectedCity} addToFavorites={addToFavorites} />
                     </div>
                 )}
                 <ItemList items={items} favorites={favorites} toggleFavorite={toggleFavorite} />
-                <FavoritesList favorites={favorites} />
+                {favorites &&<FavoritesList favorites={favorites} />}
             </div>
         </div>
     );

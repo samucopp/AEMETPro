@@ -1,0 +1,84 @@
+.rain-card {
+    background: rgba(45, 55, 72, 0.9);
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.rain-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.rain-header h3 {
+    color: #8b939c;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+.rain-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+}
+
+.rain-value {
+    font-size: 48px;
+    font-weight: 500;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.rain-unit {
+    font-size: 24px;
+    margin-left: 5px;
+    font-weight: normal;
+}
+
+.rain-probability {
+    text-align: center;
+    margin: 10px 0;
+}
+
+.probability-value {
+    font-size: 32px;
+    font-weight: 500;
+    color: #60a5fa;
+}
+
+.probability-label {
+    font-size: 14px;
+    color: #8b939c;
+    margin-top: 5px;
+}
+
+.rain-subtitle {
+    font-size: 24px;
+    color: white;
+    margin-bottom: 15px;
+}
+
+@media (max-width: 480px) {
+    .rain-content {
+        padding: 5px 0;
+    }
+    
+    .rain-value {
+        font-size: 42px;
+    }
+    
+    .probability-value {
+        font-size: 28px;
+    }
+    
+    .rain-subtitle {
+        font-size: 20px;
+    }
+}
