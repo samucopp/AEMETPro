@@ -1,29 +1,17 @@
-import { useState,useEffect } from "react";
-import { saveToLocalStorage, loadFromLocalStorage } from "../utils/localStorageHelpers";
-
-function FavoritesList() {
-    const [favorites, setFavorites] = useState([]);
-
-    useEffect(() => {
-        const savedFavorites = loadFromLocalStorage("favorites");
-        if (savedFavorites) {
-            setFavorites(savedFavorites);
-        }
-    }, []);
+import FavoriteTemplate from "./FavoriteTemplate";
+export default function FavoritesList({ favorites }) {
     return (
         <div>
             <h2>Favoritos</h2>
             {favorites.length > 0 ? (
-                <ul>
-                    {favorites.map((fav) => (
-                        <li key={fav.id}>{fav.name}</li>
+                <div className="favorites-list">
+                    {favorites.map((city, index) => (
+                        <FavoriteTemplate key={index} city={city}/>
                     ))}
-                </ul>
+                </div>
             ) : (
                 <p>No tienes favoritos aún.</p>
             )}
         </div>
     );
 }
-
-export default FavoritesList;

@@ -4,7 +4,7 @@ import WeatherToday from './WeatherToday';
 import WeatherFiveDays from './WeatherFiveDays';
 import './WeatherCard.css';
 
-function WeatherCard({ city }) {
+function WeatherCard({ city, addToFavorites }) {
     const [currentWeather, setCurrentWeather] = useState(null);
     const [forecastWeather, setForecastWeather] = useState(null);
     const [datosDelSistema, setDatosDelSistema] = useState(null);

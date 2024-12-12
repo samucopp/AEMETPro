@@ -27,6 +27,8 @@ function WeatherToday({ currentWeather, forecastWeather, next24Hours, cityName, 
     useEffect(() => {
         if (forecastWeather) {
             const weatherMain = forecastWeather.weather[0].main;
+        if (forecastWeather) {
+            const weatherMain = forecastWeather.weather[0].main;
             const appElement = document.querySelector('.app-container');
 
             if (weatherMain === 'Rain') {
@@ -74,59 +76,65 @@ function WeatherToday({ currentWeather, forecastWeather, next24Hours, cityName, 
                         </div>
                     </div>
                 </div>
+                {next24Hours && (
+                    <>
+                        <div className="section-title">Próximas 24 horas</div>
+                        <div className="hourly-forecast">
+                            {next24Hours.map((period) => {
+                                const date = new Date(period.dt * 1000);
+                                const hour = date.getHours();
 
-                <div className="section-title">Próximas 24 horas</div>
-                <div className="hourly-forecast">
-                    {next24Hours.map((period) => {
-                        const date = new Date(period.dt * 1000);
-                        const hour = date.getHours();
-                        
-                        return (
-                            <div key={period.dt} className="hourly-item">
-                                <div className="hourly-time">
-                                    {hour === new Date().getHours() ? 'Ahora' : `${hour}:00`}
-                                </div>
-                                <div className="hourly-icon">
-                                    {getWeatherEmoji(period.weather[0].id)}
-                                </div>
-                                <div className="hourly-temp">
-                                    {Math.round(period.main.temp)}°
-                                </div>
-                                {period.pop > 0 && (
-                                    <div className="hourly-pop">
-                                        {Math.round(period.pop * 100)}%
+                                return (
+                                    <div key={period.dt} className="hourly-item">
+                                        <div className="hourly-time">
+                                            {hour === new Date().getHours() ? 'Ahora' : `${hour}:00`}
+                                        </div>
+                                        <div className="hourly-icon">
+                                            {getWeatherEmoji(period.weather[0].id)}
+                                        </div>
+                                        <div className="hourly-temp">
+                                            {Math.round(period.main.temp)}°
+                                        </div>
+                                        {period.pop > 0 && (
+                                            <div className="hourly-pop">
+                                                {Math.round(period.pop * 100)}%
+                                            </div>
+                                        )}
                                     </div>
-                                )}
-                            </div>
-                        );
-                    })}
-                </div>
-            </div>
+                                );
+                            })}
+                        </div>
 
-            <WeatherTodayWind currentWeather={currentWeather} />
-            
-            <div className="weather-metrics-container">
-            <WeatherTodayClouds currentWeather={currentWeather} />
-            <WeatherTodayRain currentWeather={currentWeather} />
-            <WeatherTodayFeellsLike currentWeather={currentWeather} />
-            </div>
-            
-            
-           
-            <WeatherTodayVisibility currentWeather={currentWeather} />
-            
-            <div className="sun-container">
-                <WeatherTodayRise datosAmanecer={datosDelSistema} zonaHoraria={zonaHoraria} />
-                <WeatherTodaySunset datosAmanecer={datosDelSistema} zonaHoraria={zonaHoraria} />
-            </div>
 
-            <WeatherTodayHumidity currentWeather={currentWeather} />
-            
-            <div className="pressure-container">
-                {/* <WeatherTodayPressure currentWeather={currentWeather} /> */}
-                <WeatherTodayGroundPressure currentWeather={currentWeather} />
-                <WeatherTodaySeaLevel currentWeather={currentWeather} />
-            </div>
+                        <WeatherTodayWind currentWeather={currentWeather} />
+
+                        <div className="weather-metrics-container">
+                            <WeatherTodayClouds currentWeather={currentWeather} />
+                            <WeatherTodayRain currentWeather={currentWeather} />
+                            <WeatherTodayFeellsLike currentWeather={currentWeather} />
+                        </div>
+
+
+
+                        <WeatherTodayVisibility currentWeather={currentWeather} />
+
+                        <div className="sun-container">
+                            <WeatherTodayRise datosAmanecer={datosDelSistema} zonaHoraria={zonaHoraria} />
+                            <WeatherTodaySunset datosAmanecer={datosDelSistema} zonaHoraria={zonaHoraria} />
+                        </div>
+
+                        <WeatherTodayHumidity currentWeather={currentWeather} />
+
+                        <div className="pressure-container">
+                            {/* <WeatherTodayPressure currentWeather={currentWeather} /> */}
+                            <WeatherTodayGroundPressure currentWeather={currentWeather} />
+                            <WeatherTodaySeaLevel currentWeather={currentWeather} />
+                        </div>
+
+                    </>
+                )
+                }
+            </div >
         </>
     );
 }

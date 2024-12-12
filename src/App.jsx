@@ -30,6 +30,16 @@ export default function App() {
         saveToLocalStorage("favorites", favorites);
     }, [favorites]);
 
+    const addToFavorites = (city) => {
+        setFavorites((prevFavorites) => {
+            // Evitar duplicados
+            if (prevFavorites.some((fav) => fav.name === city.name)) {
+                return prevFavorites;
+            }
+            return [...prevFavorites, city]; // Almacenar toda la ciudad
+        });
+    };
+
     const toggleFavorite = (item) => {
         setFavorites((prevFavorites) =>
             prevFavorites.some((fav) => fav.id === item.id)
@@ -45,7 +55,7 @@ export default function App() {
                 <SearchBar onSubmit={handleCitySelect} />
                 {selectedCity && (
                     <div className="weather-wrapper">
-                        <WeatherCard city={selectedCity} />
+                        <WeatherCard city={selectedCity} addToFavorites={addToFavorites} />
                     </div>
                 )}
                 <ItemList items={items} favorites={favorites} toggleFavorite={toggleFavorite} />
