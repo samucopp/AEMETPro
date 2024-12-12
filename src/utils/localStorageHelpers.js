@@ -4,5 +4,6 @@ export const saveToLocalStorage = (key, data) => {
 
 export const loadFromLocalStorage = (key) => {
     const data = localStorage.getItem(key);
-    return data ? JSON.parse(data) : null;
+    return data ? JSON.parse(data) : [];
 };
+
