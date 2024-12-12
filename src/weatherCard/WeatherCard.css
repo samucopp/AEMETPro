@@ -224,6 +224,17 @@
     color: #60a5fa;
 }
 
+.sun-container {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.sun-container > div {
+    flex: 1;
+    margin-bottom: 0; 
+}
+
 @media (max-width: 480px) {
     .daily-grid {
         display: flex;
@@ -277,6 +288,35 @@
     font-weight: 500;
 }
 
+.pressure-container {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.pressure-container > div {
+    flex: 1;
+    margin-bottom: 0; 
+    min-width: 0; 
+}
+
+@media (max-width: 1024px) {
+    .pressure-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .pressure-container > div {
+        margin-bottom: 10px;
+    }
+}
+
+.weather-metrics-container {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
 .daily-compact__summary {
     display: flex;
     justify-content: space-between;
@@ -320,10 +360,21 @@
     .current-weather__main {
         flex-direction: column;
         text-align: center;
-        gap: 16px;
+        gap: 16px;/
     }
 
     .current-weather__details {
         text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .sun-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .sun-container > div {
+        margin-bottom: 10px;
     }
 }

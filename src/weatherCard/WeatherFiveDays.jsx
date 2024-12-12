@@ -1,6 +1,11 @@
+import { useState } from 'react';
+import WeatherModal from '../weatherModal/WeatherModal';
 import './WeatherCard.css';
 
 function WeatherFiveDays({ dailyForecast }) {
+    const [selectedDay, setSelectedDay] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
     const getWeatherEmoji = (weatherCode) => {
         if (weatherCode >= 200 && weatherCode < 300) return '🌩️';
         if (weatherCode >= 300 && weatherCode < 400) return '🌧️';
@@ -12,9 +17,13 @@ function WeatherFiveDays({ dailyForecast }) {
         return '🌤️';
     };
 
+    const handleDayClick = (day) => {
+        setSelectedDay(day);
+        setIsModalOpen(true);
+    };
+
     return (
         <div>
-            {/* Próximos días */}
             <div className="section-title">Próximos días</div>
             <div className="daily-grid">
                 {dailyForecast.map((day) => {
@@ -25,7 +34,12 @@ function WeatherFiveDays({ dailyForecast }) {
                     const maxPop = Math.max(...forecasts.map(f => f.pop || 0));
 
                     return (
-                        <div key={day.date} className="daily-compact">
+                        <div 
+                            key={day.date} 
+                            className="daily-compact"
+                            onClick={() => handleDayClick(day)}
+                            style={{ cursor: 'pointer' }}
+                        >
                             <div className="daily-compact__date">
                                 {date.toLocaleDateString('es-ES', { weekday: 'short' })}
                             </div>
@@ -58,6 +72,15 @@ function WeatherFiveDays({ dailyForecast }) {
                     );
                 })}
             </div>
+
+            {selectedDay && (
+                <WeatherModal
+                    isOpen={isModalOpen}
+                    onClose={() => setIsModalOpen(false)}
+                    dayData={selectedDay.forecasts}
+                    date={selectedDay.date}
+                />
+            )}
         </div>
     );
 }

@@ -1,0 +1,102 @@
+.sealevel-card {
+    background: rgba(45, 55, 72, 0.9);
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.sealevel-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.sealevel-header h3 {
+    color: #8b939c;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+.sealevel-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 20px 0;
+}
+
+.sealevel-value {
+    font-size: 42px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.sealevel-unit {
+    font-size: 20px;
+    margin-left: 5px;
+    font-weight: normal;
+}
+
+.sealevel-gauge {
+    position: relative;
+    width: 180px;
+    height: 120px;
+    margin-top: 20px;
+}
+
+.gauge-dial {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    right: 0;
+    height: 90px;
+    border-radius: 90px 90px 0 0;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-bottom: none;
+}
+
+.gauge-arrow {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 48px;
+    color: white;
+    font-weight: bold;
+}
+
+.gauge-labels {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 15px;
+    color: #8b939c;
+    font-size: 14px;
+}
+
+@media (max-width: 480px) {
+    .sealevel-content {
+        padding: 10px 0;
+    }
+    
+    .sealevel-value {
+        font-size: 36px;
+    }
+    
+    .sealevel-unit {
+        font-size: 18px;
+    }
+    
+    .sealevel-gauge {
+        width: 160px;
+        height: 110px;
+    }
+}
