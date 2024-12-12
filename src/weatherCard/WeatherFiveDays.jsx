@@ -1,21 +1,12 @@
 import { useState } from 'react';
 import WeatherModal from '../weatherModal/WeatherModal';
 import './WeatherCard.css';
+import getWeatherIcon from '../utils/WeatherIcons';
+import './WeatherFiveDays.css';
 
 function WeatherFiveDays({ dailyForecast }) {
     const [selectedDay, setSelectedDay] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
-
-    const getWeatherEmoji = (weatherCode) => {
-        if (weatherCode >= 200 && weatherCode < 300) return '🌩️';
-        if (weatherCode >= 300 && weatherCode < 400) return '🌧️';
-        if (weatherCode >= 500 && weatherCode < 600) return '🌧️';
-        if (weatherCode >= 600 && weatherCode < 700) return '🌨️';
-        if (weatherCode >= 700 && weatherCode < 800) return '🌫️';
-        if (weatherCode === 800) return '☀️';
-        if (weatherCode > 800) return '☁️';
-        return '🌤️';
-    };
 
     const handleDayClick = (day) => {
         setSelectedDay(day);
@@ -34,8 +25,8 @@ function WeatherFiveDays({ dailyForecast }) {
                     const maxPop = Math.max(...forecasts.map(f => f.pop || 0));
 
                     return (
-                        <div 
-                            key={day.date} 
+                        <div
+                            key={day.date}
                             className="daily-compact"
                             onClick={() => handleDayClick(day)}
                             style={{ cursor: 'pointer' }}
@@ -49,9 +40,11 @@ function WeatherFiveDays({ dailyForecast }) {
                                         <div className="forecast-hour__time">
                                             {new Date(forecast.dt * 1000).getHours()}:00
                                         </div>
-                                        <div className="forecast-hour__icon">
-                                            {getWeatherEmoji(forecast.weather[0].id)}
-                                        </div>
+                                        <img
+                                            src={getWeatherIcon(forecast.weather[0].id)}
+                                            alt="Weather Icon"
+                                            className="forecast-hour__icon"
+                                        />
                                         <div className="forecast-hour__temp">
                                             {Math.round(forecast.main.temp)}°
                                         </div>
