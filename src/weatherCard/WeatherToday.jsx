@@ -12,7 +12,7 @@ import { WeatherTodayRain } from '../rain/Rain';
 import { WeatherTodayFeellsLike } from '../feeling/Feeling';
 import './WeatherCard.css';
 
-function WeatherToday({ currentWeather, forecastWeather, next24Hours, cityName, datosDelSistema, zonaHoraria }) {
+function WeatherToday({ currentWeather,  next24Hours, cityName, datosDelSistema, zonaHoraria }) {
     const getWeatherEmoji = (weatherCode) => {
         if (weatherCode >= 200 && weatherCode < 300) return '🌩️';
         if (weatherCode >= 300 && weatherCode < 400) return '🌧️';
@@ -25,9 +25,8 @@ function WeatherToday({ currentWeather, forecastWeather, next24Hours, cityName, 
     };
 
     useEffect(() => {
-       
-        if (forecastWeather) {
-            const weatherMain = forecastWeather.weather[0].main;
+        if (currentWeather) {
+            const weatherMain = currentWeather.weather[0].main;
             const appElement = document.querySelector('.app-container');
 
             if (weatherMain === 'Rain') {
@@ -50,7 +49,7 @@ function WeatherToday({ currentWeather, forecastWeather, next24Hours, cityName, 
                 appElement.style.backgroundColor = '';
             };
         }
-    }, [forecastWeather]);
+    }, [currentWeather]);
 
     return (
         <>
@@ -62,16 +61,16 @@ function WeatherToday({ currentWeather, forecastWeather, next24Hours, cityName, 
                                 {cityName}
                             </h2>
                             <span className="current-weather__icon">
-                                {getWeatherEmoji(forecastWeather.weather[0].id)}
+                                {getWeatherEmoji(currentWeather.weather[0].id)}
                             </span>
                             <span className="current-weather__temp">
-                                {Math.round(forecastWeather.main.temp)}°
+                                {Math.round(currentWeather.main.temp)}°
                             </span>
                         </div>
                         <div className="current-weather__details">
-                            <p>{forecastWeather.weather[0].description}</p>
-                            <p>Humedad: {forecastWeather.main.humidity}%</p>
-                            <p>Viento: {Math.round(forecastWeather.wind.speed * 3.6)} km/h</p>
+                            <p>{currentWeather.weather[0].description}</p>
+                            <p>Humedad: {currentWeather.main.humidity}%</p>
+                            <p>Viento: {Math.round(currentWeather.wind.speed * 3.6)} km/h</p>
                         </div>
                     </div>
                 </div>
