@@ -9,7 +9,7 @@ import { WeatherTodayHuminity } from '../huminity/Huminity';
 import { WeatherTodayPressure } from '../pressure/Presure';
 import { WeatherTodayGroundPressure } from '../groundPressure/GroundPressure';
 import { WeatherTodayVisibility } from '../visibility/Visibility';
-import Map from '../map/Map';
+import SliderMaps from '../map/Map';
 
 
 
@@ -109,7 +109,7 @@ function WeatherCard({ city }) {
                 dailyForecast={dailyForecast} 
             />
 
-            <Map 
+            <SliderMaps 
                 city={city}
             />
         </div>

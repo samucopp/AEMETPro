@@ -1,65 +1,84 @@
-import { MapContainer, TileLayer, useMap } from 'react-leaflet';
+import React, { useState } from 'react';
+import { MapContainer, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import './Map.css';
 
-export default function Map(city) {
+export default function Map({ city }) {
+    const maps = [
+        {
+            name: 'Precipitaciones',
+            className: 'precipitation-map',
+            url: `https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=98122e0b77bec612bce873d52e0343a4`,
+        },
+        {
+            name: 'Nubes',
+            className: 'clouds-map',
+            url: `https://tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid=98122e0b77bec612bce873d52e0343a4`,
+        },
+        {
+            name: 'Presión a nivel del mar',
+            className: 'pressure-map',
+            url: `https://tile.openweathermap.org/map/pressure_new/{z}/{x}/{y}.png?appid=98122e0b77bec612bce873d52e0343a4`,
+        },
+        {
+            name: 'Velocidad del viento',
+            className: 'wind-map',
+            url: `https://tile.openweathermap.org/map/wind_new/{z}/{x}/{y}.png?appid=98122e0b77bec612bce873d52e0343a4`,
+        },
+        {
+            name: 'Temperatura',
+            className: 'temp-map',
+            url: `https://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=98122e0b77bec612bce873d52e0343a4`,
+        },
+    ];
+
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    const nextMap = () => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % maps.length);
+    };
+
+    const prevMap = () => {
+        setCurrentIndex((prevIndex) =>
+            prevIndex === 0 ? maps.length - 1 : prevIndex - 1
+        );
+    };
+
     return (
-        <div className='mapa-container'>
-            <MapContainer className='precipitation-map' center={[city.city.lat, city.city.lon]} zoom={5} scrollWheelZoom={true}>
-                <TileLayer className='base-map'
-                    url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
-                    opacity={0.7}
-                />
-                <TileLayer className='precipitation-layer'
-                    url={`https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=98122e0b77bec612bce873d52e0343a4`}
-                    detectRetina={true}
-                    opacity={1}
-                />
-            </MapContainer>
-            <MapContainer className='clouds-map' center={[city.city.lat, city.city.lon]} zoom={5} scrollWheelZoom={true}>
-                <TileLayer className='base-map'
-                    url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
-                    opacity={0.7}
-                />
-                <TileLayer className='clouds-layer'
-                    url={`https://tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid=98122e0b77bec612bce873d52e0343a4`}
-                    detectRetina={true}
-                    opacity={1}
-                />
-            </MapContainer>
-            <MapContainer className='pressure-map' center={[city.city.lat, city.city.lon]} zoom={5} scrollWheelZoom={true}>
-                <TileLayer className='base-map'
-                    url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
-                    opacity={0.7}
-                />
-                <TileLayer className='pressure-layer'
-                    url={`https://tile.openweathermap.org/map/pressure_new/{z}/{x}/{y}.png?appid=98122e0b77bec612bce873d52e0343a4`}
-                    detectRetina={true}
-                    opacity={1}
-                />
-            </MapContainer>
-            <MapContainer className='wind-map' center={[city.city.lat, city.city.lon]} zoom={5} scrollWheelZoom={true}>
-                <TileLayer className='base-map'
-                    url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
-                    opacity={0.7}
-                />
-                <TileLayer className='wind-layer'
-                    url={`https://tile.openweathermap.org/map/wind_new/{z}/{x}/{y}.png?appid=98122e0b77bec612bce873d52e0343a4`}
-                    detectRetina={true}
-                    opacity={1}
-                />
-            </MapContainer>
-            <MapContainer className='temp-map' center={[city.city.lat, city.city.lon]} zoom={5} scrollWheelZoom={true}>
-                <TileLayer className='base-map'
-                    url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
-                    opacity={0.7}
-                />
-                <TileLayer className='temp-layer'
-                    url={`https://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=98122e0b77bec612bce873d52e0343a4`}
-                    detectRetina={true}
-                    opacity={1}
-                />
-            </MapContainer>
+        <div className={"mapa-container "+ maps[currentIndex].className}>
+                <div className="map-title ">{maps[currentIndex].name}</div>
+
+                <button className="arrow left" onClick={prevMap}>◀</button>
+                
+                <MapContainer
+                    className="mapa-completo"
+                    center={[city.lat, city.lon]}
+                    zoom={8}
+                    scrollWheelZoom={true}
+                >
+                    <TileLayer
+                        className="base-map"
+                        url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+                        opacity={0.7}
+                    />
+                    <TileLayer
+                        className='layer-map'
+                        url={maps[currentIndex].url}
+                        opacity={1}
+                    />
+                </MapContainer>
+                
+                <button className="arrow right" onClick={nextMap}>▶</button>
+
+                <div className="indicators">
+                    {maps.map((_, index) => (
+                        <span
+                            key={index}
+                            className={`dot ${currentIndex === index ? 'active' : ''}`}
+                            onClick={() => setCurrentIndex(index)}
+                        ></span>
+                    ))}
+                </div>
         </div>
     );
 }
