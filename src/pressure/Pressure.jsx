@@ -1,3 +1,5 @@
+import './pressure.css'
+
 export function WeatherTodayPressure({ currentWeather }) {
     if (!currentWeather || !currentWeather.main) {
         return null;

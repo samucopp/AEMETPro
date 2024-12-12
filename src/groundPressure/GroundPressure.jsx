@@ -1,3 +1,5 @@
+import './groundPressure.css'
+
 export function WeatherTodayGroundPressure({ currentWeather }) {
     if (!currentWeather || !currentWeather.main) {
         return null;

@@ -2,20 +2,20 @@ import { useEffect, useState } from 'react';
 import { getFiveDayForecast } from '../utils/ApiCalls';
 import WeatherToday from './WeatherToday';
 import WeatherFiveDays from './WeatherFiveDays';
-import { WeatherTodayWind } from '../wind/Wind'
+import { WeatherTodayWind } from '../wind/Wind';
 import { WeatherTodayRise } from '../sunrise/Sunrise';
 import { WeatherTodaySunset } from '../sunset/Sunset';
-import { WeatherTodayHuminity } from '../huminity/Huminity';
-import { WeatherTodayPressure } from '../pressure/Presure';
+import { WeatherTodayHumidity } from '../huminity/Humidity';
+import { WeatherTodayPressure } from '../pressure/Pressure';
 import { WeatherTodayGroundPressure } from '../groundPressure/GroundPressure';
 import { WeatherTodayVisibility } from '../visibility/Visibility';
-
-
 
 import './WeatherCard.css';
 
 function WeatherCard({ city, addToFavorites }) {
     const [currentWeather, setCurrentWeather] = useState(null);
+    const [datosDelSistema, setDatosDelSistema] = useState(null);
+    const [zonaHoraria, setZonaHoraria] = useState(null);
     const [next24Hours, setNext24Hours] = useState(null);
     const [dailyForecast, setDailyForecast] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -33,6 +33,8 @@ function WeatherCard({ city, addToFavorites }) {
                 
                 // Próximas 24 horas y tiempo actual
                 setNext24Hours(fiveDayData.list.slice(0, 8));
+                setDatosDelSistema(fiveDayData.sys);
+                setZonaHoraria(fiveDayData.timezone);
                 setCurrentWeather(fiveDayData.list[0]);
 
                 // Agrupar por días para el pronóstico de 5 días
@@ -72,27 +74,29 @@ function WeatherCard({ city, addToFavorites }) {
         <div className="weather-card">
             <div className="card-header">
                 <h2 className="current-weather__city">{city.name}</h2>
-                <button 
-                    className="favorites" 
-                    onClick={() => addToFavorites(city)}>
-                    Añadir a Favoritos
-                </button>
+                <button className="favorites">Favoritos</button>
             </div>
+            
             <WeatherToday 
                 currentWeather={currentWeather} 
                 next24Hours={next24Hours} 
             />
-             <WeatherTodayWind 
+            
+            <WeatherTodayWind 
                 currentWeather={currentWeather}
             />
+            
             <WeatherTodayRise 
-                currentWeather={currentWeather}
+                datosAmanecer={datosDelSistema}
+                zonaHoraria={zonaHoraria}
             />
+            
             <WeatherTodaySunset 
-                currentWeather={currentWeather}
+                datosAmanecer={datosDelSistema}
+                zonaHoraria={zonaHoraria}
             />
 
-            <WeatherTodayHuminity 
+            <WeatherTodayHumidity 
                 currentWeather={currentWeather}
             />
 
@@ -111,7 +115,6 @@ function WeatherCard({ city, addToFavorites }) {
             <WeatherFiveDays 
                 dailyForecast={dailyForecast} 
             />
-              
         </div>
     );
 }

@@ -1,4 +1,4 @@
-
+import './wind.css';
 
 export function WeatherTodayWind({ currentWeather }) {
     if (!currentWeather || !currentWeather.wind) {
