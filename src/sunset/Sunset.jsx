@@ -1,19 +1,41 @@
 import './sunset.css';
 
-export function WeatherTodaySunset({ currentWeather }) {
-    if (!currentWeather || !currentWeather.main) {
+export function WeatherTodaySunset({ datosAmanecer, zonaHoraria }) {
+    if (!datosAmanecer?.sunset) {
         return null;
     }
 
+    const horaAtardecer = new Date((datosAmanecer.sunset + zonaHoraria) * 1000)
+        .toLocaleTimeString('es-ES', { 
+            hour: '2-digit', 
+            minute: '2-digit',
+            hour12: false
+        });
+
+    const horaAmanecer = new Date((datosAmanecer.sunrise + zonaHoraria) * 1000)
+        .toLocaleTimeString('es-ES', { 
+            hour: '2-digit', 
+            minute: '2-digit',
+            hour12: false
+        });
+
     return (
-        <div className="current_sunset">
-            <h3>Puesta de sol</h3>
-            <div>
-                <p><span>🌅</span></p>
-                <p>
-                    <span>Noche:</span>{' '}
-                    {new Date(currentWeather.sunset * 1000).toLocaleTimeString('es-ES')}
-                </p>
+        <div className="sunset-card">
+            <div className="sunset-header">
+                <span className="sunset-icon">🌄</span>
+                <h3>ATARDECER</h3>
+            </div>
+            
+            <div className="sunset-content">
+                <div className="time-value">
+                    {horaAtardecer}
+                </div>
+                <div className="sunset-graph">
+                    <div className="sun-path">
+                        <div className="sun-position"></div>
+                    </div>
+                </div>
+                
             </div>
         </div>
     );

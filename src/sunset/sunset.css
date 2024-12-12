@@ -1,54 +1,97 @@
-
-.current_sunset {
-    text-align: center;
-    margin-bottom: 24px;
+.sunset-card {
+    background: rgba(45, 55, 72, 0.9);
+    border-radius: 20px;
     padding: 20px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 16px;
+    margin-bottom: 20px;
+    color: white;
 }
 
-.current_sunset h3 {
-    font-size: 14px;
+.sunset-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.sunset-header h3 {
     color: #8b939c;
+    font-size: 14px;
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin: 24px 0 12px 0;
+    margin: 0;
 }
 
-.current_sunset div {
+.sunset-content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
-    color: #e2e8f0;
+    gap: 15px;
+    padding: 10px 0;
 }
 
-.current_sunset p {
-    margin: 4px 0;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+.time-value {
+    font-size: 42px;
+    font-weight: 500;
+    text-align: center;
 }
 
-.current_sunset span {
+.sunset-graph {
+    width: 100%;
+    height: 80px;
+    position: relative;
+    margin: 10px 0;
+}
+
+.sun-path {
+    position: relative;
+    width: 100%;
+    height: 60px;
+    overflow: hidden;
+}
+
+.sun-path::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 5%;
+    right: 5%;
+    height: 100px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    border-bottom: none;
+}
+
+.sun-position {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    border-radius: 50%;
+    bottom: 0;
+    left: 30%;
+    transform: translateX(-50%);
+}
+
+.sunset-time {
+    color: #8b939c;
     font-size: 16px;
-}
-
-.current_sunset span:first-child {
-    font-size: 24px;
+    text-align: center;
 }
 
 @media (max-width: 480px) {
-    .current_sunset {
-        padding: 16px;
-        margin: 10px 0;
+    .time-value {
+        font-size: 36px;
     }
     
-    .current_sunset h3 {
-        margin: 12px 0 8px 0;
+    .sunset-time {
+        font-size: 14px;
     }
     
-    .current_sunset div {
-        gap: 8px;
+    .sunset-graph {
+        height: 70px;
+    }
+    
+    .sun-path {
+        height: 50px;
     }
 }

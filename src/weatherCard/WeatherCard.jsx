@@ -1,19 +1,12 @@
 import { useEffect, useState } from 'react';
-import { getFiveDayForecast } from '../utils/ApiCalls';
+import { getFiveDayForecast, getCurrentWeather } from '../utils/ApiCalls';
 import WeatherToday from './WeatherToday';
 import WeatherFiveDays from './WeatherFiveDays';
-import { WeatherTodayWind } from '../wind/Wind';
-import { WeatherTodayRise } from '../sunrise/Sunrise';
-import { WeatherTodaySunset } from '../sunset/Sunset';
-import { WeatherTodayHumidity } from '../huminity/Humidity';
-import { WeatherTodayPressure } from '../pressure/Pressure';
-import { WeatherTodayGroundPressure } from '../groundPressure/GroundPressure';
-import { WeatherTodayVisibility } from '../visibility/Visibility';
-
 import './WeatherCard.css';
 
 function WeatherCard({ city, addToFavorites }) {
     const [currentWeather, setCurrentWeather] = useState(null);
+    const [forecastWeather, setForecastWeather] = useState(null);
     const [datosDelSistema, setDatosDelSistema] = useState(null);
     const [zonaHoraria, setZonaHoraria] = useState(null);
     const [next24Hours, setNext24Hours] = useState(null);
@@ -29,13 +22,16 @@ function WeatherCard({ city, addToFavorites }) {
             setError(null);
             
             try {
+                // Obtener datos actuales
+                const currentData = await getCurrentWeather(city.lat, city.lon);
+                setCurrentWeather(currentData);
+                setDatosDelSistema(currentData.sys);
+                setZonaHoraria(currentData.timezone);
+
+                // Obtener pronóstico de 5 días
                 const fiveDayData = await getFiveDayForecast(city.lat, city.lon);
-                
-                // Próximas 24 horas y tiempo actual
                 setNext24Hours(fiveDayData.list.slice(0, 8));
-                setDatosDelSistema(fiveDayData.sys);
-                setZonaHoraria(fiveDayData.timezone);
-                setCurrentWeather(fiveDayData.list[0]);
+                setForecastWeather(fiveDayData.list[0]);
 
                 // Agrupar por días para el pronóstico de 5 días
                 const groupedByDay = fiveDayData.list.reduce((acc, item) => {
@@ -47,11 +43,11 @@ function WeatherCard({ city, addToFavorites }) {
                     return acc;
                 }, {});
 
-                // Obtener los próximos 5 días
+                // Modificamos esta parte para usar timestamps en lugar de strings de fecha
                 const dailyData = Object.entries(groupedByDay)
                     .slice(1, 6)
-                    .map(([date, items]) => ({
-                        date,
+                    .map(([_, items]) => ({
+                        date: items[0].dt * 1000, // Guardamos el timestamp
                         forecasts: items
                     }));
 
@@ -73,45 +69,18 @@ function WeatherCard({ city, addToFavorites }) {
     return (
         <div className="weather-card">
             <div className="card-header">
-                <h2 className="current-weather__city">{city.name}</h2>
                 <button className="favorites">Favoritos</button>
             </div>
             
             <WeatherToday 
-                currentWeather={currentWeather} 
-                next24Hours={next24Hours} 
-            />
-            
-            <WeatherTodayWind 
                 currentWeather={currentWeather}
-            />
-            
-            <WeatherTodayRise 
-                datosAmanecer={datosDelSistema}
+                forecastWeather={forecastWeather}
+                next24Hours={next24Hours}
+                cityName={city.name}
+                datosDelSistema={datosDelSistema}
                 zonaHoraria={zonaHoraria}
             />
             
-            <WeatherTodaySunset 
-                datosAmanecer={datosDelSistema}
-                zonaHoraria={zonaHoraria}
-            />
-
-            <WeatherTodayHumidity 
-                currentWeather={currentWeather}
-            />
-
-            <WeatherTodayPressure 
-                currentWeather={currentWeather}
-            />
-
-            <WeatherTodayGroundPressure 
-                currentWeather={currentWeather}
-            />
-
-            <WeatherTodayVisibility 
-                currentWeather={currentWeather}
-            />
-
             <WeatherFiveDays 
                 dailyForecast={dailyForecast} 
             />
