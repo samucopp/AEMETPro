@@ -15,6 +15,7 @@ useEffect (()=>{
 
 return(
     <>
+    {city.name}
     {currentWeather && <WeatherToday currentWeather={currentWeather}/>}
     </>
 )

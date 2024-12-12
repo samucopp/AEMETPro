@@ -27,7 +27,9 @@ export default function App() {
     }, []);
 
     useEffect(() => {
-        saveToLocalStorage("favorites", favorites);
+        if(favorites.length !== 0){
+            saveToLocalStorage("favorites", favorites);
+        }
     }, [favorites]);
 
     const addToFavorites = (city) => {
@@ -59,7 +61,7 @@ export default function App() {
                     </div>
                 )}
                 <ItemList items={items} favorites={favorites} toggleFavorite={toggleFavorite} />
-                <FavoritesList favorites={favorites} />
+                {favorites &&<FavoritesList favorites={favorites} />}
             </div>
         </div>
     );
