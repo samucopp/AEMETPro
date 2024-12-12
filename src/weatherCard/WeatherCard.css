@@ -360,7 +360,7 @@
     .current-weather__main {
         flex-direction: column;
         text-align: center;
-        gap: 16px;/
+        gap: 16px;
     }
 
     .current-weather__details {

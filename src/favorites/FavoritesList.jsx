@@ -1,5 +1,6 @@
-import FavoriteTemplate from "./FavoriteTemplate";
-export default function FavoritesList({ favorites, OnCityClick }) {
+import React from "react";
+
+export default function FavoritesList({ favorites, onCityClick }) {
     return (
         <div>
             <h2>Favoritos</h2>
@@ -7,12 +8,16 @@ export default function FavoritesList({ favorites, OnCityClick }) {
                 <div className="favorites-list">
                     {favorites.map((city, index) => (
                         <div
-                        key={index}
-                        className="favorite-card"
-                        onClick={() => OnCityClick(city)}
-                        style={{cursor:"pointer"}}
+                            key={index}
+                            className="favorite-card"
+                            onClick={() => onCityClick(city)}
+                            style={{ cursor: "pointer" }} 
                         >
-                        <FavoriteTemplate key={index} city={city}/>
+                            <h3>{city.name}</h3>
+                            <p>Temperatura: {city.temperature}°C</p>
+                            <p>Descripción: {city.description}</p>
+                            <img src={city.iconUrl} alt={`Clima en ${city.name}`} />
+                        </div>
                     ))}
                 </div>
             ) : (

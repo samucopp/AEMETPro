@@ -27,7 +27,7 @@ export default function App() {
     }, []);
 
     useEffect(() => {
-        if(favorites.length !== 0){
+        if (favorites.length !== 0) {
             saveToLocalStorage("favorites", favorites);
         }
     }, [favorites]);
@@ -61,7 +61,12 @@ export default function App() {
                     </div>
                 )}
                 <ItemList items={items} favorites={favorites} toggleFavorite={toggleFavorite} />
-                {favorites &&<FavoritesList favorites={favorites} />}
+                {favorites && (
+                    <FavoritesList 
+                        favorites={favorites} 
+                        onCityClick={handleCitySelect} // Pasar función para gestionar clics en tarjetas
+                    />
+                )}
             </div>
         </div>
     );
