@@ -14,8 +14,23 @@ import { WeatherTodaySeaLevel } from '../sea/Sea';
 function WeatherModal({ isOpen, onClose, dayData, date }) {
     if (!isOpen) return null;
 
-    // Tomamos los datos del primer registro del día para la información general
+    // Extract the main data for current conditions
     const mainData = dayData[0];
+    
+    // Filter and process the next 24 hours of data
+    const currentHour = new Date().getHours();
+    const next24Hours = dayData.filter((item, index) => index < 8); // Assuming 3-hour intervals, 8 periods = 24 hours
+
+    const getWeatherEmoji = (weatherCode) => {
+        if (weatherCode >= 200 && weatherCode < 300) return '🌩️';
+        if (weatherCode >= 300 && weatherCode < 400) return '🌧️';
+        if (weatherCode >= 500 && weatherCode < 600) return '🌧️';
+        if (weatherCode >= 600 && weatherCode < 700) return '🌨️';
+        if (weatherCode >= 700 && weatherCode < 800) return '🌫️';
+        if (weatherCode === 800) return '☀️';
+        if (weatherCode > 800) return '☁️';
+        return '🌤️';
+    };
 
     return (
         <div className="modal-overlay" onClick={onClose}>
@@ -34,6 +49,7 @@ function WeatherModal({ isOpen, onClose, dayData, date }) {
                 <div className="modal-body">
                     <div className="temperature-overview">
                         <div className="current-temp">
+                            <span className="current-emoji">{getWeatherEmoji(mainData.weather[0].id)}</span>
                             <span className="temp-value">{Math.round(mainData.main.temp)}°</span>
                             <span className="weather-description">{mainData.weather[0].description}</span>
                         </div>
@@ -43,13 +59,31 @@ function WeatherModal({ isOpen, onClose, dayData, date }) {
                         </div>
                     </div>
 
+                    <div className="section-title">Próximas 24 horas</div>
                     <div className="hourly-forecast">
-                        {dayData.map((hour) => (
-                            <div key={hour.dt} className="hour-item">
-                                <span className="hour">{new Date(hour.dt * 1000).getHours()}:00</span>
-                                <span className="temp">{Math.round(hour.main.temp)}°</span>
-                            </div>
-                        ))}
+                        {next24Hours.map((period) => {
+                            const date = new Date(period.dt * 1000);
+                            const hour = date.getHours();
+
+                            return (
+                                <div key={period.dt} className="hourly-item">
+                                    <div className="hourly-time">
+                                        {hour === currentHour ? 'Ahora' : `${hour}:00`}
+                                    </div>
+                                    <div className="hourly-icon">
+                                        {getWeatherEmoji(period.weather[0].id)}
+                                    </div>
+                                    <div className="hourly-temp">
+                                        {Math.round(period.main.temp)}°
+                                    </div>
+                                    {period.pop > 0 && (
+                                        <div className="hourly-pop">
+                                            {Math.round(period.pop * 100)}%
+                                        </div>
+                                    )}
+                                </div>
+                            );
+                        })}
                     </div>
 
                     <div className="weather-details-grid">
