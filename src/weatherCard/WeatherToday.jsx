@@ -71,7 +71,7 @@ function WeatherToday({ currentWeather, next24Hours, cityName, datosDelSistema, 
                             return (
                                 <div key={period.dt} className="hourly-item">
                                     <div className="hourly-time">
-                                        {hour === new Date().getHours() ? 'Ahora' : `${hour}:00`}
+                                        {`${hour}:00`}
                                     </div>
                                     <img
                                         src={getWeatherIcon(period.weather[0].id, hour)}
