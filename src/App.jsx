@@ -35,8 +35,8 @@ export default function App() {
                 // Si la ciudad buscada actual está en favoritos, actualizar su información
                 if (searchedCity) {
                     const updatedSearchedCity = parsedFavorites.find(fav => 
-                    );
                         fav.lat === searchedCity.lat && fav.lon === searchedCity.lon
+                    );
                     if (updatedSearchedCity) {
                         setSearchedCity(updatedSearchedCity);
                     }

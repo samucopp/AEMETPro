@@ -1,5 +1,6 @@
 /* ShowFavorites.css */
 .carousel-container {
+    width:100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -8,13 +9,13 @@
     max-width: 1200px;
     margin: 0 auto 1rem auto;
     padding: 0.5rem;
-    height: 200px;
+    /* height: 200px; */
 }
 
 .favorite-item {
     padding: 1rem;
-    width: 450px; 
-    height: 180px;
+    width: 600px; 
+    /* height: 180px; */
     flex-shrink: 0;
     overflow: hidden;
     transition: transform 0.3s ease;
@@ -57,12 +58,12 @@
         padding: 0.5rem;
         margin: 0.5rem;
         gap: 0.5rem;
-        height: 180px;
+        /* height: 180px; */
     }
 
     .favorite-item {
         width: calc(100% - 80px);
-        height: 160px;
+        /* height: 160px; */
         margin: 0 auto;
     }
 
@@ -76,3 +77,23 @@
         height: 20px;
     }
 }
+
+.current-weather__temp-container{
+    max-width: 70%;
+}
+.current-weather__city {
+    max-width: 50%;
+}
+
+@media (max-width: 480px) {
+    body {
+    
+        font-size: 14px;
+         
+    }
+    .current-weather__city {
+        font-size: 20px;
+    }
+}
+
+/*ajustar la altura de las tarjetas para que esten todas igual
