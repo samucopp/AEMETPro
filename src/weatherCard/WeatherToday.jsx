@@ -12,6 +12,7 @@ import { WeatherTodayRain } from '../rain/Rain';
 import { WeatherTodayFeellsLike } from '../feeling/Feeling';
 import './WeatherCard.css';
 import getWeatherIcon from '../utils/WeatherIcons';
+import getBackgroundImage from '../utils/Background';
 import './WeatherToday.css';
 
 
@@ -21,17 +22,9 @@ function WeatherToday({ currentWeather, next24Hours, cityName, datosDelSistema, 
             const weatherMain = currentWeather.weather[0].main;
             const appElement = document.querySelector('.app-container');
 
-            if (weatherMain === 'Rain') {
-                appElement.style.backgroundImage = 'url(/images/lluvia.jpg)';
-            } else if (weatherMain === 'Clear') {
-                appElement.style.backgroundImage = 'url(/images/sol.jpg)';
-            } else if (weatherMain === 'Clouds') {
-                appElement.style.backgroundImage = 'url(/images/nubes.jpg)';
-            } else {
-                appElement.style.backgroundImage = 'none';
-                appElement.style.backgroundColor = '#2d3748';
-            }
+            const backgroundImage = getBackgroundImage(weatherMain);
 
+            appElement.style.backgroundImage = backgroundImage;
             appElement.style.backgroundSize = 'cover';
             appElement.style.backgroundPosition = 'center';
             appElement.style.backgroundAttachment = 'fixed';
