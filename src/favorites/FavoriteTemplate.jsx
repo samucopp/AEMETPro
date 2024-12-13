@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+/* import { useState, useEffect } from "react";
 import { getCurrentWeather } from "../utils/ApiCalls";
 import WeatherToday from "../weatherCard/WeatherToday";
 
@@ -21,4 +21,4 @@ return(
 )
 }
 
-export default FavoriteTemplate
+export default FavoriteTemplate */
