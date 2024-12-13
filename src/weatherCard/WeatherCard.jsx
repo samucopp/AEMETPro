@@ -97,7 +97,7 @@ function WeatherCard({ city }) {
             
             localStorage.setItem('weatherFavorites', JSON.stringify(favorites));
             setIsFavorite(!isFavorite);
-            window.dispatchEvent(new Event('favoritesUpdated'));
+            //window.dispatchEvent(new Event('favoritesUpdated'));
         } catch (error) {
             console.error('Error toggling favorite:', error);
         }
