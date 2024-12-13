@@ -6,7 +6,7 @@ export function WeatherTodayPressure({ currentWeather }) {
     }
 
     const pressure = currentWeather.main.pressure;
-    const rotationDegrees = ((pressure - 950) / (1050 - 950)) * 180 - 90; // Convertir a grados (-90 a 90)
+    const rotationDegrees = ((pressure - 950) / (1050 - 950)) * 180 - 90; 
 
     return (
         <div className="pressure-card">

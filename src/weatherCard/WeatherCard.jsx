@@ -1,4 +1,4 @@
-// WeatherCard.jsx
+
 import { useEffect, useState } from 'react';
 import { getFiveDayForecast, getCurrentWeather } from '../utils/ApiCalls';
 import WeatherToday from './WeatherToday';

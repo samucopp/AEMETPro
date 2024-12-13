@@ -5,7 +5,7 @@ import DropDownMenu from '../drop-down-menu/DropDownMenu';
 import './SearchBar.css';
 
 function SearchBar({ onSubmit }) {
-    //const [city, setCity] = useState('');
+    
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [cityList, setCityList] = useState([]);

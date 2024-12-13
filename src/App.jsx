@@ -1,4 +1,4 @@
-// App.jsx
+
 import { useState, useEffect } from 'react';
 import SearchBar from './search-bar/SearchBar';
 import ShowFavorites from './favorites/ShowFavorites';

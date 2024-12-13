@@ -1,4 +1,4 @@
-// WeatherCardsCarousel.jsx
+
 import React, { useState, useEffect } from 'react';
 import WeatherCard from './WeatherCard';
 import './weatherCardsCarousel.css';
