@@ -1,10 +1,12 @@
+
 .weather-card {
     background: rgb(45, 55, 72, 0.9);
     color: white;
     padding: 24px;
     border-radius: 20px;
-    max-width: 600px;
-    margin: 20px auto;
+    width: 100%;
+    max-width: 600px; 
+    margin: 0 auto;
 }
 
 .section-title {
@@ -15,19 +17,29 @@
     margin: 24px 0 12px 0;
 }
 
-
-.card-header{
-    display:flex;
-    flex-direction: row;
-    justify-content: space-between;
+.card-header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
 }
 
-.card-header button{
-    
-    max-height: 30px;
+.favorite-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.9;
 }
- 
-   
+
+.favorite-btn:hover {
+    transform: scale(1.1);
+    opacity: 1;
+}
 
 /* Tiempo actual */
 .current-weather {
@@ -224,133 +236,39 @@
     color: #60a5fa;
 }
 
-.sun-container {
+/* Contenedores adicionales */
+.sun-container, .pressure-container, .weather-metrics-container {
     display: flex;
     gap: 20px;
     margin-bottom: 20px;
 }
 
-.sun-container > div {
-    flex: 1;
-    margin-bottom: 0; 
-}
-
-@media (max-width: 480px) {
-    .daily-grid {
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
-    }
-
-    .daily-compact {
-        width: 100%;
-    }
-}
-
-.daily-compact {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    padding: 8px 12px; /* Reducido aún más */
-}
-
-.daily-compact__date {
-    font-size: 13px;
-    color: #e2e8f0;
-    text-transform: capitalize;
-    margin-bottom: 6px;
-    font-weight: 500;
-}
-
-.daily-compact__forecasts {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 6px;
-}
-
-.forecast-hour {
-    text-align: center;
-    min-width: 44px;
-}
-
-.forecast-hour__time {
-    font-size: 10px;
-    color: #8b939c;
-    margin-bottom: 1px;
-}
-
-.forecast-hour__icon {
-    font-size: 16px;
-    margin: 1px 0;
-}
-
-.forecast-hour__temp {
-    font-size: 12px;
-    font-weight: 500;
-}
-
-.pressure-container {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 20px;
-}
-
+.sun-container > div,
 .pressure-container > div {
     flex: 1;
-    margin-bottom: 0; 
-    min-width: 0; 
+    margin-bottom: 0;
+    min-width: 0;
 }
 
-@media (max-width: 1024px) {
-    .pressure-container {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .pressure-container > div {
-        margin-bottom: 10px;
-    }
-}
-
-.weather-metrics-container {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 20px;
-}
-
-.daily-compact__summary {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 4px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.daily-compact__temps {
-    font-size: 12px;
-    color: #e2e8f0;
-}
-
-.daily-compact__pop {
-    font-size: 10px;
-    color: #60a5fa;
-}
-
+/* Estados de carga y error */
 .loading {
     text-align: center;
-    padding: 40px;
-    color: #e2e8f0;
-    font-size: 16px;
+    padding: 2rem;
+    color: #fff;
+    font-size: 1.2rem;
 }
 
 .error {
     text-align: center;
-    padding: 20px;
-    color: #fc8181;
-    background: rgba(252, 129, 129, 0.1);
+    padding: 2rem;
+    color: #ff6b6b;
+    font-size: 1.2rem;
+    background: rgba(255, 107, 107, 0.1);
     border-radius: 8px;
-    margin: 20px 0;
+    margin: 1rem 0;
 }
 
+/* Media Queries */
 @media (max-width: 480px) {
     .weather-card {
         padding: 16px;
@@ -366,15 +284,38 @@
     .current-weather__details {
         text-align: center;
     }
+
+    .daily-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .daily-compact {
+        width: 100%;
+    }
 }
 
 @media (max-width: 768px) {
-    .sun-container {
+    .sun-container,
+    .pressure-container {
         flex-direction: column;
         gap: 10px;
     }
 
-    .sun-container > div {
+    .sun-container > div,
+    .pressure-container > div {
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .pressure-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .pressure-container > div {
         margin-bottom: 10px;
     }
 }

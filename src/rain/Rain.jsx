@@ -1,15 +1,15 @@
 import './rain.css';
 
 export function WeatherTodayRain({ currentWeather, forecastWeather }) {
-    // Si no hay datos de lluvia actual ni probabilidad de lluvia, no mostramos nada
+   
     if (!currentWeather?.rain?.['1h'] && !forecastWeather?.pop) {
         return null;
     }
 
-    // Obtener la cantidad de lluvia actual si existe
+    
     const currentRain = currentWeather?.rain?.['1h'];
     
-    // Obtener la probabilidad de lluvia del pronóstico si existe
+   
     const rainProbability = forecastWeather?.pop ? Math.round(forecastWeather.pop * 100) : null;
 
     return (

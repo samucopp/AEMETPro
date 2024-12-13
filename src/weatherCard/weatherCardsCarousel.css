@@ -1,0 +1,35 @@
+/* WeatherCardsCarousel.css */
+.weather-cards-carousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.carousel-content {
+    width: 100%;
+}
+
+.carousel-nav {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+    flex-shrink: 0;
+}
+
+.carousel-nav:hover {
+    color: white;
+    transform: scale(1.1);
+}

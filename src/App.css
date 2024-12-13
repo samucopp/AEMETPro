@@ -1,3 +1,4 @@
+
 .app-container {
   min-height: 100vh;
   width: 100vw;
@@ -27,33 +28,38 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  align-items: center; /* Centrar horizontalmente */
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 20px;
 }
 
+.weather-wrapper {
+  width: 100%;
+  max-width: 600px; /* Ajustado para coincidir con el input bar */
+  padding: 0 20px 40px 20px;
+  animation: fadeIn 0.5s ease;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+/* Asegurarnos que el search wrapper tiene el mismo ancho */
 .search-wrapper {
-  flex: 1;
+  width: 100%;
+  max-width: 600px;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.5s ease;
-  padding: 20px;
+  padding: 20px 0;
   position: relative;
 }
-
 .app-container.with-weather .search-wrapper {
-  flex: 0;
   padding-top: 40px;
   padding-bottom: 20px;
 }
 
-.weather-wrapper {
-  padding: 0 20px 40px 20px;
-  animation: fadeIn 0.5s ease;
-  width: 100%;
-  position: relative;
-}
 
 @keyframes fadeIn {
   from {
@@ -66,7 +72,6 @@
   }
 }
 
-/* Asegurarse de que el body y html no tengan márgenes o padding */
 html, body {
   margin: 0;
   padding: 0;

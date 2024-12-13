@@ -1,83 +1,72 @@
+
 import { useState, useEffect } from 'react';
-import ItemList from "./favorites/ItemList";
-import FavoritesList from "./favorites/FavoritesList";
 import SearchBar from './search-bar/SearchBar';
-import WeatherCard from './weatherCard/WeatherCard';
+import ShowFavorites from './favorites/ShowFavorites';
+import WeatherCardsCarousel from './weatherCard/WeatherCardsCarousel';
 import './App.css';
 
 export default function App() {
     const [selectedCity, setSelectedCity] = useState(null);
-    const [items, setItems] = useState([
-        { id: 1, name: "Item 1" },
-        { id: 2, name: "Item 2" },
-        { id: 3, name: "Item 3" },
-    ]);
-    const [favorites, setFavorites] = useState([]);
+    const [searchedCity, setSearchedCity] = useState(null);
+    const [showFavorites, setShowFavorites] = useState(true);
+    const [favorites, setFavorites] = useState(() => {
+        const saved = localStorage.getItem('weatherFavorites');
+        return saved ? JSON.parse(saved) : [];
+    });
 
     const handleCitySelect = (city) => {
-        console.log('Ciudad seleccionada:', city);
         setSelectedCity(city);
+        setSearchedCity(city);
+        setShowFavorites(false);
+    };
+
+    const handleFavoriteClick = (favorite) => {
+        setSelectedCity(favorite);
+        setShowFavorites(false);
     };
 
     useEffect(() => {
-        const savedFavorites = loadFromLocalStorage("favorites");
-        if (savedFavorites) {
-            setFavorites(savedFavorites);
-        }
-    }, []);
-
-    useEffect(() => {
-        if (favorites.length !== 0) {
-            saveToLocalStorage("favorites", favorites);
-        }
-    }, [favorites]);
-
-    const addToFavorites = (city) => {
-        setFavorites((prevFavorites) => {
-            // Evitar duplicados
-            if (prevFavorites.some((fav) => fav.name === city.name)) {
-                return prevFavorites;
+            const saved = localStorage.getItem('weatherFavorites');
+        const handleFavoritesUpdate = () => {
+            if (saved) {
+                const parsedFavorites = JSON.parse(saved);
+                setFavorites(parsedFavorites);
+                
+                // Si la ciudad buscada actual está en favoritos, actualizar su información
+                if (searchedCity) {
+                    const updatedSearchedCity = parsedFavorites.find(fav => 
+                    );
+                        fav.lat === searchedCity.lat && fav.lon === searchedCity.lon
+                    if (updatedSearchedCity) {
+                        setSearchedCity(updatedSearchedCity);
+                    }
+                }
             }
-            return [...prevFavorites, city]; // Almacenar toda la ciudad
-        });
-    };
+        };
 
-    const toggleFavorite = (item) => {
-        setFavorites((prevFavorites) =>
-            prevFavorites.some((fav) => fav.id === item.id)
-                ? prevFavorites.filter((fav) => fav.id !== item.id)
-                : [...prevFavorites, item]
-        );
-    };
+        window.addEventListener('favoritesUpdated', handleFavoritesUpdate);
+        return () => {
+            window.removeEventListener('favoritesUpdated', handleFavoritesUpdate);
+        };
+    }, [searchedCity]);
 
     return (
         <div className={`app-container ${selectedCity ? 'with-weather' : ''}`}>
             <div className="content-wrapper">
-                <h1>Lista de elementos y Favoritos</h1>
+                {showFavorites && (
+                    <ShowFavorites 
+                        onFavoriteClick={handleFavoriteClick}
+                    />
+                )}
                 <SearchBar onSubmit={handleCitySelect} />
                 {selectedCity && (
-                    <div className="weather-wrapper">
-                        <WeatherCard city={selectedCity} addToFavorites={addToFavorites} />
-                    </div>
-                )}
-                <ItemList items={items} favorites={favorites} toggleFavorite={toggleFavorite} />
-                {favorites && (
-                    <FavoritesList 
-                        favorites={favorites} 
-                        onCityClick={handleCitySelect} // Pasar función para gestionar clics en tarjetas
+                    <WeatherCardsCarousel 
+                        favorites={favorites}
+                        activeCity={selectedCity}
+                        searchedCity={searchedCity}
                     />
                 )}
             </div>
         </div>
     );
 }
-
-// Funciones de ayuda para localStorage
-const saveToLocalStorage = (key, data) => {
-    localStorage.setItem(key, JSON.stringify(data));
-};
-
-const loadFromLocalStorage = (key) => {
-    const data = localStorage.getItem(key);
-    return data ? JSON.parse(data) : null;
-};
