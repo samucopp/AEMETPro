@@ -23,6 +23,10 @@
     margin-bottom: 1rem;
 }
 
+.fav-icon {
+    height: 30px;
+    width: 30px;
+}
 .favorite-btn {
     background: none;
     border: none;
@@ -34,11 +38,16 @@
     align-items: center;
     justify-content: center;
     opacity: 0.9;
+    filter: invert(90%);
+    outline: none;
 }
 
 .favorite-btn:hover {
     transform: scale(1.1);
     opacity: 1;
+}
+.favorite-btn:focus {
+    outline: none;
 }
 
 /* Tiempo actual */

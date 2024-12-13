@@ -115,7 +115,8 @@ function WeatherCard({ city }) {
                     onClick={toggleFavorite}
                     aria-label={isFavorite ? 'Eliminar de favoritos' : 'Añadir a favoritos'}
                 >
-                    {isFavorite ? '❤️' : '🤍'}
+                    {isFavorite ? <img src="/fav-icons/heart-full.png" alt="Favorito" className='fav-icon' /> : <img src="/fav-icons/heart-empty.png" alt="No favorito" className='fav-icon'/>}
+
                 </button>
             </div>
             
