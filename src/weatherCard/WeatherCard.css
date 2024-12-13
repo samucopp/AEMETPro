@@ -41,7 +41,7 @@
     opacity: 1;
 }
 
-/* Tiempo actual */
+
 .current-weather {
     text-align: center;
     margin-bottom: 24px;
@@ -87,7 +87,7 @@
     margin: 4px 0;
 }
 
-/* Próximas 24 horas */
+
 .hourly-forecast {
     display: flex;
     overflow-x: auto;
@@ -151,7 +151,7 @@
     margin-top: 4px;
 }
 
-/* Próximos días (compacto) */
+
 .daily-grid {
     display: grid;
     gap: 4px;
@@ -200,6 +200,7 @@
     text-align: center;
     min-width: 44px;
     flex-shrink: 0;
+    padding: 8px;
 }
 
 .forecast-hour__time {

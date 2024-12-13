@@ -4,12 +4,30 @@ import { getCurrentWeather } from '../utils/ApiCalls';
 import WeatherToday from '../weatherCard/WeatherToday';
 import './favoritesList.css';
 
+const CarouselDots = ({ total, current, onDotClick }) => {
+    return (
+        <div className="carousel-dots">
+            {Array.from({ length: total }, (_, index) => (
+                <button
+                    key={index}
+                    className={`carousel-dot ${index === current ? 'active' : ''}`}
+                    onClick={() => onDotClick && onDotClick(index)}
+                    aria-label={`Ir a ciudad ${index + 1}`}
+                />
+            ))}
+        </div>
+    );
+};
+
 function ShowFavorites({ onFavoriteClick }) {
     const [favorites, setFavorites] = useState([]);
     const [favoritesWeather, setFavoritesWeather] = useState({});
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [touchStart, setTouchStart] = useState(null);
+    const [touchEnd, setTouchEnd] = useState(null);
 
-    
+    const minSwipeDistance = 50;
+
     useEffect(() => {
         const loadFavorites = () => {
             const saved = localStorage.getItem('weatherFavorites');
@@ -37,7 +55,6 @@ function ShowFavorites({ onFavoriteClick }) {
         };
     }, []);
 
-    
     useEffect(() => {
         const updateFavoritesWeather = async () => {
             const weatherData = {};
@@ -54,8 +71,6 @@ function ShowFavorites({ onFavoriteClick }) {
 
         if (favorites.length > 0) {
             updateFavoritesWeather();
-
-            
             const interval = setInterval(updateFavoritesWeather, 300000);
             return () => clearInterval(interval);
         }
@@ -73,9 +88,27 @@ function ShowFavorites({ onFavoriteClick }) {
         );
     };
 
-    const handleFavoriteClick = (favorite) => {
-        if (onFavoriteClick) {
-            onFavoriteClick(favorite);
+    const onTouchStart = (e) => {
+        setTouchEnd(null);
+        setTouchStart(e.targetTouches[0].clientX);
+    };
+
+    const onTouchMove = (e) => {
+        setTouchEnd(e.targetTouches[0].clientX);
+    };
+
+    const onTouchEnd = () => {
+        if (!touchStart || !touchEnd) return;
+        
+        const distance = touchStart - touchEnd;
+        const isLeftSwipe = distance > minSwipeDistance;
+        const isRightSwipe = distance < -minSwipeDistance;
+        
+        if (isLeftSwipe) {
+            nextFavorite();
+        }
+        if (isRightSwipe) {
+            prevFavorite();
         }
     };
 
@@ -86,42 +119,55 @@ function ShowFavorites({ onFavoriteClick }) {
 
     return (
         <div className="carousel-container">
-            {favorites.length > 1 && (
-                <button 
-                    className="carousel-button prev"
-                    onClick={prevFavorite}
-                    aria-label="Anterior favorito"
+            <div className="carousel-content">
+                {favorites.length > 1 && (
+                    <button 
+                        className="carousel-button prev"
+                        onClick={prevFavorite}
+                        aria-label="Anterior favorito"
+                    >
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <polyline points="15 18 9 12 15 6" />
+                        </svg>
+                    </button>
+                )}
+                
+                <div 
+                    className="favorite-item"
+                    onClick={() => onFavoriteClick(currentFavorite)}
+                    onTouchStart={onTouchStart}
+                    onTouchMove={onTouchMove}
+                    onTouchEnd={onTouchEnd}
+                    style={{ cursor: 'pointer' }}
                 >
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <polyline points="15 18 9 12 15 6" />
-                    </svg>
-                </button>
-            )}
-            
-            <div 
-                className="favorite-item"
-                onClick={() => handleFavoriteClick(currentFavorite)}
-                style={{ cursor: 'pointer' }}
-            >
-                {favoritesWeather[cityKey] && (
-                    <WeatherToday 
-                        currentWeather={favoritesWeather[cityKey]}
-                        cityName={currentFavorite.name}
-                        compact={true}
-                    />
+                    {favoritesWeather[cityKey] && (
+                        <WeatherToday 
+                            currentWeather={favoritesWeather[cityKey]}
+                            cityName={currentFavorite.name}
+                            compact={true}
+                        />
+                    )}
+                </div>
+
+                {favorites.length > 1 && (
+                    <button 
+                        className="carousel-button next"
+                        onClick={nextFavorite}
+                        aria-label="Siguiente favorito"
+                    >
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <polyline points="9 18 15 12 9 6" />
+                        </svg>
+                    </button>
                 )}
             </div>
 
             {favorites.length > 1 && (
-                <button 
-                    className="carousel-button next"
-                    onClick={nextFavorite}
-                    aria-label="Siguiente favorito"
-                >
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <polyline points="9 18 15 12 9 6" />
-                    </svg>
-                </button>
+                <CarouselDots 
+                    total={favorites.length} 
+                    current={currentIndex}
+                    onDotClick={setCurrentIndex}
+                />
             )}
         </div>
     );

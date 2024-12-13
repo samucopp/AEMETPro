@@ -32,7 +32,7 @@ export default function App() {
                 const parsedFavorites = JSON.parse(saved);
                 setFavorites(parsedFavorites);
                 
-                // Si la ciudad buscada actual está en favoritos, actualizar su información
+                
                 if (searchedCity) {
                     const updatedSearchedCity = parsedFavorites.find(fav => 
                         fav.lat === searchedCity.lat && fav.lon === searchedCity.lon
