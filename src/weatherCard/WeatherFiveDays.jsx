@@ -35,21 +35,24 @@ function WeatherFiveDays({ dailyForecast }) {
                                 {date.toLocaleDateString('es-ES', { weekday: 'short' })}
                             </div>
                             <div className="daily-compact__forecasts">
-                                {forecasts.map((forecast, idx) => (
-                                    <div key={idx} className="forecast-hour">
-                                        <div className="forecast-hour__time">
-                                            {new Date(forecast.dt * 1000).getHours()}:00
+                                {forecasts.map((forecast, idx) => {
+                                    const hour = new Date(forecast.dt * 1000).getHours();
+                                    return (
+                                        <div key={idx} className="forecast-hour">
+                                            <div className="forecast-hour__time">
+                                                {hour}:00
+                                            </div>
+                                            <img
+                                                src={getWeatherIcon(forecast.weather[0].id, hour)}
+                                                alt="Weather Icon"
+                                                className="forecast-hour__icon"
+                                            />
+                                            <div className="forecast-hour__temp">
+                                                {Math.round(forecast.main.temp)}°
+                                            </div>
                                         </div>
-                                        <img
-                                            src={getWeatherIcon(forecast.weather[0].id)}
-                                            alt="Weather Icon"
-                                            className="forecast-hour__icon"
-                                        />
-                                        <div className="forecast-hour__temp">
-                                            {Math.round(forecast.main.temp)}°
-                                        </div>
-                                    </div>
-                                ))}
+                                    )
+                                })}
                             </div>
                             <div className="daily-compact__summary">
                                 <span className="daily-compact__temps">
