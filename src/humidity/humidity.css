@@ -1,54 +1,59 @@
 
 .current_humidity {
-    text-align: center;
-    margin-bottom: 24px;
+    background: rgba(45, 55, 72, 0.9);
+    border-radius: 20px;
     padding: 20px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 16px;
+    color: white;
+    flex: 1;
+    margin-bottom: 12px;
+    width: 200px; /* Ancho fijo */
+    height: 200px; /* Alto fijo */
+    display: flex;
+    flex-direction: column;
 }
 
-.current_humidity h3 {
-    font-size: 14px;
+.humidity-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.humidity-header h3 {
     color: #8b939c;
+    font-size: 14px;
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin: 24px 0 12px 0;
+    margin: 0;
 }
 
-.current_humidity div {
+.humidity-content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
-    color: #e2e8f0;
+    padding: 10px 0;
 }
 
-.current_humidity p {
-    margin: 4px 0;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+.progress-ring__circle {
+    transition: stroke-dashoffset 0.5s ease-in-out;
 }
 
-.current_humidity span {
-    font-size: 16px;
-}
-
-.current_humidity span:first-child {
+.clouds-percentage,
+.humidity-percentage {
     font-size: 24px;
+    font-weight: 500;
+    font-family: system-ui, -apple-system, sans-serif;
 }
 
-@media (max-width: 480px) {
-    .current_humidity {
-        padding: 16px;
-        margin: 10px 0;
-    }
-    
-    .current_humidity h3 {
-        margin: 12px 0 8px 0;
-    }
-    
-    .current_humidity div {
-        gap: 8px;
+.humidity-percentage {
+    font-size: 24px;
+    font-weight: 500;
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Animación inicial del círculo */
+@keyframes progress {
+    from {
+        stroke-dashoffset: 251.327; /* Valor de circumference */
     }
 }

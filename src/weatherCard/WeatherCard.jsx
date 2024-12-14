@@ -1,8 +1,7 @@
-
 import { useEffect, useState } from 'react';
-import { getFiveDayForecast, getCurrentWeather } from '../utils/ApiCalls';
-import WeatherToday from './WeatherToday';
-import WeatherFiveDays from './WeatherFiveDays';
+import { getFiveDayForecast, getCurrentWeather, getPolution } from '../utils/ApiCalls';
+import WeatherToday from '../weatherToday/WeatherToday';
+import WeatherFiveDays from '../weatherFiveDays/WeatherFiveDays';
 import SliderMaps from '../map/Map';
 
 import './WeatherCard.css';
@@ -14,11 +13,12 @@ function WeatherCard({ city }) {
     const [zonaHoraria, setZonaHoraria] = useState(null);
     const [next24Hours, setNext24Hours] = useState(null);
     const [dailyForecast, setDailyForecast] = useState(null);
+    const [pollutionData, setPollutionData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [isFavorite, setIsFavorite] = useState(false);
 
-    // Verificar si la ciudad actual está en favoritos
+    
     useEffect(() => {
         if (city) {
             const favorites = JSON.parse(localStorage.getItem('weatherFavorites') || '[]');
@@ -31,7 +31,7 @@ function WeatherCard({ city }) {
         }
     }, [city]);
 
-    // Obtener datos del clima
+    
     useEffect(() => {
         const fetchWeatherData = async () => {
             if (!city) return;
@@ -40,12 +40,17 @@ function WeatherCard({ city }) {
             setError(null);
             
             try {
-                const currentData = await getCurrentWeather(city.lat, city.lon);
+                const [currentData, fiveDayData, pollutionResponse] = await Promise.all([
+                    getCurrentWeather(city.lat, city.lon),
+                    getFiveDayForecast(city.lat, city.lon),
+                    getPolution(city.lat, city.lon)
+                ]);
+
                 setCurrentWeather(currentData);
                 setDatosDelSistema(currentData.sys);
                 setZonaHoraria(currentData.timezone);
+                setPollutionData(pollutionResponse);
 
-                const fiveDayData = await getFiveDayForecast(city.lat, city.lon);
                 setNext24Hours(fiveDayData.list.slice(0, 8));
                 setForecastWeather(fiveDayData.list[0]);
 
@@ -67,6 +72,7 @@ function WeatherCard({ city }) {
 
                 setDailyForecast(dailyData);
             } catch (err) {
+                console.error('Error fetching data:', err);
                 setError(err.message || 'Error al obtener datos del clima');
             } finally {
                 setLoading(false);
@@ -81,12 +87,10 @@ function WeatherCard({ city }) {
             let favorites = JSON.parse(localStorage.getItem('weatherFavorites') || '[]');
             
             if (isFavorite) {
-                // Eliminar de favoritos
                 favorites = favorites.filter(fav => 
                     !(fav.name === city.name && fav.lat === city.lat && fav.lon === city.lon)
                 );
             } else {
-                // Añadir a favoritos
                 const newFavorite = {
                     name: city.name,
                     lat: city.lat,
@@ -126,6 +130,7 @@ function WeatherCard({ city }) {
                 cityName={city.name}
                 datosDelSistema={datosDelSistema}
                 zonaHoraria={zonaHoraria}
+                pollutionData={pollutionData}
             />
             
             <WeatherFiveDays 

@@ -4,8 +4,8 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   backdrop-filter: blur(8px);
-  position: fixed; /* Fijado como el input */
-  top: 35%; /* Posicionado debajo del input */
+  position: fixed; 
+  top: 35%; 
   left: 50%;
   transform: translateX(-50%);
   width: 90%;

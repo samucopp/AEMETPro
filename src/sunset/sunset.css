@@ -2,8 +2,13 @@
     background: rgba(45, 55, 72, 0.9);
     border-radius: 20px;
     padding: 20px;
-    margin-bottom: 20px;
     color: white;
+    flex: 1;
+    margin-bottom: 12px;
+    width: 200px; 
+    height: 225px; 
+    display: flex;
+    flex-direction: column;
 }
 
 .sunset-header {

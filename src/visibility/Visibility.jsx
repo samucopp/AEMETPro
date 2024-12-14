@@ -5,16 +5,21 @@ export function WeatherTodayVisibility({ currentWeather }) {
         return null;
     }
 
+    
+    const visibilityInKm = (currentWeather.visibility / 1000).toFixed(1);
+
     return (
         <div className="current_visibility">
-            <h3>Visibilidad</h3>
-            <div>
-                <p><span>👁️</span></p>
-                <p>
-                    <span>Visibilidad:</span>{' '}
-                    {Math.round(currentWeather.visibility / 1000)} km
-                </p>
+            <div className="visibility-header">
+                <span className="visibility-icon">👁️</span>
+                <h3>VISIBILIDAD</h3>
             </div>
-        </div>
-    )
+            <div className="visibility-content">
+                <div className="visibility-value">
+                    {visibilityInKm}
+                    <span className="visibility-unit">km</span>
+                </div>
+            </div>
+        </div>  
+    );
 }

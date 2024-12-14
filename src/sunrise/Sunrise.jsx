@@ -22,7 +22,7 @@ export function WeatherTodayRise({ datosAmanecer, zonaHoraria }) {
     return (
         <div className="sunrise-card">
             <div className="sunrise-header">
-                <span className="sunrise-icon">🌄</span>
+                <span className="sunrise-icon">🌅</span>
                 <h3>SALIDA DEL SOL</h3>
             </div>
             

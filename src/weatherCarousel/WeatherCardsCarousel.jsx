@@ -1,9 +1,8 @@
-// WeatherCardsCarousel.jsx
 import React, { useState, useEffect } from 'react';
-import WeatherCard from './WeatherCard';
+import WeatherCard from '../weatherCard/WeatherCard';
 import './weatherCardsCarousel.css';
 
-const CarouselDots = ({ total, current, onDotClick }) => {
+const CarouselDots = ({ total, current, onDotClick }) => { 
     return (
         <div className="carousel-dots">
             {Array.from({ length: total }, (_, index) => (
@@ -89,7 +88,7 @@ function WeatherCardsCarousel({ favorites, activeCity, searchedCity }) {
                         onClick={prevCard}
                         aria-label="Anterior ciudad"
                     >
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
                             <polyline points="15 18 9 12 15 6" />
                         </svg>
                     </button>
@@ -110,7 +109,7 @@ function WeatherCardsCarousel({ favorites, activeCity, searchedCity }) {
                         onClick={nextCard}
                         aria-label="Siguiente ciudad"
                     >
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
                             <polyline points="9 18 15 12 9 6" />
                         </svg>
                     </button>

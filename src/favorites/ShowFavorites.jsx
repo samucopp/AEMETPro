@@ -1,7 +1,6 @@
-// ShowFavorites.jsx
 import { useState, useEffect } from 'react';
 import { getCurrentWeather } from '../utils/ApiCalls';
-import WeatherToday from '../weatherCard/WeatherToday';
+import WeatherToday from '../weatherToday/WeatherToday';
 import './favoritesList.css';
 
 const CarouselDots = ({ total, current, onDotClick }) => {
@@ -25,8 +24,18 @@ function ShowFavorites({ onFavoriteClick }) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [touchStart, setTouchStart] = useState(null);
     const [touchEnd, setTouchEnd] = useState(null);
-
+    const [isMobile, setIsMobile] = useState(false);
     const minSwipeDistance = 50;
+
+    // Detect screen size for mobile/desktop
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768); // Consider mobile if width is less than 768px
+        };
+        handleResize(); // Run once on load
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     useEffect(() => {
         const loadFavorites = () => {

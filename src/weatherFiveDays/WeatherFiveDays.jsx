@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import WeatherModal from '../weatherModal/WeatherModal';
-import './WeatherCard.css';
+import '../weatherCard/WeatherCard.css';
+import './weatherFiveDays.css';
 
 function WeatherFiveDays({ dailyForecast }) {
     const [selectedDay, setSelectedDay] = useState(null);

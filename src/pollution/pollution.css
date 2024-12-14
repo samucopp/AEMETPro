@@ -1,0 +1,236 @@
+.weather-metrics-container,
+.pollution-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 16px;
+    width: 100%;
+}
+
+.current_pollution {
+    background: rgba(45, 55, 72, 0.9);
+    border-radius: 20px;
+    padding: 20px;
+    color: white;
+    margin-bottom: 16px;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.pollution-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.pollution-header h3 {
+    color: #8b939c;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+.pollution-content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding: 10px 0;
+}
+
+.pollution-item {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.pollution-item:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.pollution-label {
+    color: #8b939c;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.pollution-value {
+    font-size: 24px;
+    font-weight: 500;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.pollution-unit {
+    font-size: 14px;
+    font-weight: normal;
+    color: #8b939c;
+}
+
+.aqi-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.aqi-indicator:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.aqi-value {
+    font-size: 32px;
+    font-weight: 500;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.aqi-label {
+    color: #8b939c;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+
+.aqi-good {
+    color: #48bb78;
+}
+
+.aqi-moderate {
+    color: #ecc94b;
+}
+
+.aqi-unhealthy {
+    color: #ed8936;
+}
+
+.aqi-bad {
+    color: #e53e3e;
+}
+
+.aqi-hazardous {
+    color: #805ad5;
+}
+
+
+.loading {
+    text-align: center;
+    padding: 2rem;
+    color: #fff;
+    font-size: 1.2rem;
+}
+
+.error {
+    text-align: center;
+    padding: 2rem;
+    color: #ff6b6b;
+    font-size: 1.2rem;
+    background: rgba(255, 107, 107, 0.1);
+    border-radius: 8px;
+    margin: 1rem 0;
+}
+
+
+@media (max-width: 768px) {
+    .current_pollution {
+        padding: 12px;
+        margin-bottom: 12px;
+        border-radius: 12px;
+    }
+
+    .pollution-content {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 8px;
+    }
+
+    .pollution-item {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 10px 15px;
+    }
+
+    .pollution-label {
+        margin-bottom: 0;
+        margin-right: 10px;
+    }
+
+    .pollution-value {
+        font-size: 20px;
+    }
+
+    .aqi-indicator {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 15px;
+        margin-bottom: 12px;
+    }
+
+    .aqi-value {
+        font-size: 28px;
+        margin-bottom: 0;
+        margin-right: 10px;
+    }
+
+    .weather-metrics-container,
+    .pollution-container {
+        flex-direction: row;
+        gap: 8px;
+    }
+}
+
+
+@media (max-width: 380px) {
+    .current_pollution {
+        padding: 10px;
+    }
+
+    .pollution-item {
+        padding: 8px 12px;
+    }
+
+    .pollution-label {
+        font-size: 12px;
+    }
+
+    .pollution-value {
+        font-size: 18px;
+    }
+
+    .pollution-unit {
+        font-size: 12px;
+    }
+
+    .aqi-value {
+        font-size: 24px;
+    }
+
+    .aqi-label {
+        font-size: 12px;
+    }
+
+    .pollution-header h3 {
+        font-size: 12px;
+    }
+}
