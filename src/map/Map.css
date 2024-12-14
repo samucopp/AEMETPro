@@ -1,36 +1,34 @@
-/* Contenedor principal */
-.mapa-container {
-    display: flex;
+.map-section {
+    background: rgba(45, 55, 72, 0.9);
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.map-container {
+    display:flex;
     justify-content: center;
     align-items: center;
     position: relative;
     width: 100%;
     height: 400px;
+}
+
+.complete-map {
+    height: 100%;
+    width: 100%;
     border-radius: 20px;
+    border-style: none;
 }
 
-.mapa-completo{
-    height: 400px; 
-    width: 600px;
-}
-
-
-/* Título del mapa */
 .map-title {
-    position: absolute;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 16px;
-    font-weight: bold;
-    color: white;
-    background: rgba(0, 0, 0, 0.5);
-    padding: 5px 10px;
-    border-radius: 4px;
-    z-index: 1000;
+    font-size: 14px;
+    color: #8b939c;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 24px 0 12px 0;
 }
 
-/* Flechas minimalistas */
 .arrow {
     position: absolute;
     top: 50%;
@@ -55,14 +53,13 @@
 }
 
 .arrow.left {
-    left: 10px;
+    left: 0px;
 }
 
 .arrow.right {
-    right: 10px;
+    right: 0px;
 }
 
-/* Indicadores minimalistas */
 .indicators {
     position: absolute;
     bottom: 10px;
@@ -94,9 +91,9 @@
 }
 
 .precipitation-map .layer-map {
-    filter: contrast(1000%) saturate(500%);
+    filter: contrast(1000%);
 }
 
-.mapa-container .base-map {
+.map-container .base-map {
     filter: invert(100%);
 }

@@ -24,6 +24,10 @@
     margin-bottom: 1rem;
 }
 
+.fav-icon {
+    height: 30px;
+    width: 30px;
+}
 .favorite-btn {
     background: none;
     border: none;
@@ -35,11 +39,16 @@
     align-items: center;
     justify-content: center;
     opacity: 0.9;
+    filter: invert(90%);
+    outline: none;
 }
 
 .favorite-btn:hover {
     transform: scale(1.1);
     opacity: 1;
+}
+.favorite-btn:focus {
+    outline: none;
 }
 
 .current-weather {
@@ -70,10 +79,6 @@
     display: flex;
     align-items: center;
     gap: 12px;
-}
-
-.current-weather__icon {
-    font-size: 48px;
 }
 
 .current-weather__temp {
@@ -124,11 +129,6 @@
     font-size: 14px;
     color: #e2e8f0;
     margin-bottom: 8px;
-}
-
-.hourly-icon {
-    font-size: 24px;
-    margin: 8px 0;
 }
 
 .hourly-temp {

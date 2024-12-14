@@ -3,7 +3,6 @@ import './weatherModal.css';
 
 import { WeatherTodayWind } from '../wind/Wind';
 import { WeatherTodayClouds } from '../clouds/Clouds';
-
 import { WeatherTodayFeellsLike } from '../feeling/Feeling';
 import { WeatherTodayVisibility } from '../visibility/Visibility';
 import { WeatherTodayHumidity } from '../humidity/Humidity';
@@ -11,6 +10,7 @@ import { WeatherTodayGroundPressure } from '../groundPressure/GroundPressure';
 import { WeatherTodaySeaLevel } from '../sea/Sea';
 import { WeatherTodayRise } from '../sunrise/Sunrise';
 import { WeatherTodaySunset } from '../sunset/Sunset';
+import getWeatherIcon from '../utils/WeatherIcons';
 
 
 
@@ -21,16 +21,7 @@ function WeatherModal({ isOpen, onClose, dayData, date}) {
     const currentHour = new Date().getHours();
     const next24Hours = dayData.filter((item, index) => index < 8);
 
-    const getWeatherEmoji = (weatherCode) => {
-        if (weatherCode >= 200 && weatherCode < 300) return '🌩️';
-        if (weatherCode >= 300 && weatherCode < 400) return '🌧️';
-        if (weatherCode >= 500 && weatherCode < 600) return '🌧️';
-        if (weatherCode >= 600 && weatherCode < 700) return '🌨️';
-        if (weatherCode >= 700 && weatherCode < 800) return '🌫️';
-        if (weatherCode === 800) return '☀️';
-        if (weatherCode > 800) return '☁️';
-        return '🌤️';
-    };
+   
 
     return (
         <div className="modal-overlay" onClick={onClose}>
@@ -49,9 +40,11 @@ function WeatherModal({ isOpen, onClose, dayData, date}) {
                 <div className="current-weather">
                     <div className="current-weather__main">
                         <div className="current-weather__temp-container">
-                            <span className="current-weather__icon">
-                                {getWeatherEmoji(mainData.weather[0].id)}
-                            </span>
+                        <img
+                            src={getWeatherIcon(mainData.weather[0].id)}
+                            alt="Weather Icon"
+                            className="current-weather__icon"
+                        />
                             <span className="current-weather__temp">
                                 {Math.round(mainData.main.temp)}°
                             </span>
@@ -75,9 +68,11 @@ function WeatherModal({ isOpen, onClose, dayData, date}) {
                                 <div className="hourly-time">
                                     {hour === currentHour ? 'Ahora' : `${hour}:00`}
                                 </div>
-                                <div className="hourly-icon">
-                                    {getWeatherEmoji(period.weather[0].id)}
-                                </div>
+                                <img
+                                src={getWeatherIcon(mainData.weather[0].id)}
+                                alt="Weather Icon"
+                                className="current-weather__icon"
+                                />
                                 <div className="hourly-temp">
                                     {Math.round(period.main.temp)}°
                                 </div>

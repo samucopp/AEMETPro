@@ -49,6 +49,9 @@ function SearchBar({ onSubmit }) {
 
     return (
         <>
+            <div className="page-title">
+                <h1>Pronostik</h1>
+                </div>
             <div className="search-bar">
                 <Input
                     onChange={handleInputChange}

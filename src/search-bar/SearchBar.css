@@ -1,26 +1,6 @@
-
-
-.search-bar button {
-    padding: 16px 24px;
-    border: none;
-    border-radius: 12px;
-    background: #3b82f6;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+.page-title {
+    
 }
-
-.search-bar button:hover {
-    background: #2563eb;
-    transform: translateY(-1px);
-}
-
-.search-bar button:active {
-    transform: translateY(1px);
-}
-
-
 
 .error-message {
     position: absolute;

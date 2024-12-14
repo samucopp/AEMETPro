@@ -1,0 +1,11 @@
+.hourly-icon {
+    height: 40px;
+    width: 40px;
+    filter: invert(100%);
+}
+
+.current-weather__icon {
+    height: 80px;
+    width: 80px;
+    filter: invert(100%);
+}
