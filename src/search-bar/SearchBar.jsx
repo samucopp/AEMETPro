@@ -5,7 +5,6 @@ import DropDownMenu from '../drop-down-menu/DropDownMenu';
 import './SearchBar.css';
 
 function SearchBar({ onSubmit }) {
-    
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [cityList, setCityList] = useState([]);
@@ -48,26 +47,26 @@ function SearchBar({ onSubmit }) {
     }
 
     return (
-        <>
+        <div className="search-container">
             <div className="page-title">
                 <h1>Pronostik</h1>
-                </div>
+            </div>
             <div className="search-bar">
                 <Input
                     onChange={handleInputChange}
                     placeholder="Buscar ciudad..."
                 />
+                {cityList.length > 0 && (
+                    <DropDownMenu
+                        cityList={cityList}
+                        onCitySelect={handleSubmit}
+                    />
+                )}
+                {error && (
+                    <div className="error-message">{error}</div>
+                )}
             </div>
-            {cityList.length > 0 && (
-                <DropDownMenu
-                    cityList={cityList}
-                    onCitySelect={handleSubmit}
-                />
-            )}
-            { error && (
-                <div className="error-message">{error}</div>
-            )}
-        </>
+        </div>
     );
 }
 

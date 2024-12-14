@@ -4,7 +4,7 @@ import './weatherCardsCarousel.css';
 
 const CarouselDots = ({ total, current, onDotClick }) => { 
     return (
-        <div className="carousel-dots">
+        <div className="carousel-Card-dots">
             {Array.from({ length: total }, (_, index) => (
                 <button
                     key={index}

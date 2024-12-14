@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import SearchBar from './search-bar/SearchBar';
 import ShowFavorites from './favorites/ShowFavorites';
 import WeatherCardsCarousel from './weatherCarousel/WeatherCardsCarousel';
+import DropDownMenu from './drop-down-menu/DropDownMenu';
 import './App.css';
 
 export default function App() {
@@ -59,6 +60,7 @@ export default function App() {
                     />
                 )}
                 <SearchBar onSubmit={handleCitySelect} />
+                
                 {selectedCity && (
                     <WeatherCardsCarousel 
                         favorites={favorites}
