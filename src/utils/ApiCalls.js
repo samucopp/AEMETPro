@@ -1,6 +1,7 @@
+import API_KEY from "../../apiKey";
+
 async function getGeoLocation(city) {
-  const apiKey = "98122e0b77bec612bce873d52e0343a4";
-  const url = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${apiKey}`;
+  const url = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${API_KEY}`;
   console.log('Fetching geo location for:', city);
   const response = await fetch(url);
   if (!response.ok) {
@@ -15,8 +16,7 @@ async function getGeoLocation(city) {
 }
 
 async function getCurrentWeather(lat, lon) {
-  const apiKey = "98122e0b77bec612bce873d52e0343a4";
-  const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=es`;
+  const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric&lang=es`;
   const response = await fetch(url);
   if (!response.ok) {
     throw new Error(`Error de red: ${response.status}`);
@@ -27,8 +27,7 @@ async function getCurrentWeather(lat, lon) {
 }
 
 async function getFiveDayForecast(lat, lon) {
-  const apiKey = "98122e0b77bec612bce873d52e0343a4";
-  const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=es`;
+  const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric&lang=es`;
   console.log('Fetching 5-day forecast for coordinates:', { lat, lon });
   const response = await fetch(url);
   if (!response.ok) {
@@ -46,8 +45,7 @@ async function getFiveDayForecast(lat, lon) {
 }
 
 async function getPolution(lat, lon) {
-  const apiKey = "98122e0b77bec612bce873d52e0343a4";
-  const url = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+  const url = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
   console.log('Fetching pollution for coordinates:', { lat, lon });
   const response = await fetch(url);
   if (!response.ok) {
