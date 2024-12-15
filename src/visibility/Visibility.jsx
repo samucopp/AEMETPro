@@ -1,11 +1,9 @@
-import './visibility.css';
+import './Visibility.css';
 
 export function WeatherTodayVisibility({ currentWeather }) {
     if (!currentWeather || !currentWeather.visibility) {
         return null;
     }
-
-    
     const visibilityInKm = (currentWeather.visibility / 1000).toFixed(1);
 
     return (
@@ -20,6 +18,6 @@ export function WeatherTodayVisibility({ currentWeather }) {
                     <span className="visibility-unit">km</span>
                 </div>
             </div>
-        </div>  
+        </div>
     );
 }

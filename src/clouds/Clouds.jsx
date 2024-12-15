@@ -1,20 +1,16 @@
 import { useEffect, useState } from 'react';
-import './clouds.css';
+import './Clouds.css';
 
 export function WeatherTodayClouds({ currentWeather }) {
     const [percentage, setPercentage] = useState(0);
-    
     useEffect(() => {
         if (currentWeather?.clouds?.all) {
             setPercentage(currentWeather.clouds.all);
         }
     }, [currentWeather]);
-
     if (!currentWeather || !currentWeather.clouds) {
         return null;
     }
-
-    // Calcular los valores para el círculo SVG
     const radius = 40;
     const circumference = 2 * Math.PI * radius;
     const strokeDashoffset = circumference - (percentage / 100) * circumference;
@@ -65,6 +61,6 @@ export function WeatherTodayClouds({ currentWeather }) {
                     </svg>
                 </div>
             </div>
-        </div>  
+        </div>
     );
 }

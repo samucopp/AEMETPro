@@ -2,7 +2,7 @@ import './Input.css';
 
 const Input = ({
   value,
-  onChange, 
+  onChange,
   placeholder = 'Ingresa una ciudad',
 }) => {
   return (

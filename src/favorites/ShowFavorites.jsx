@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { getCurrentWeather } from '../utils/ApiCalls';
 import WeatherToday from '../weatherToday/WeatherToday';
-import './favoritesList.css';
+import './FavoritesList.css';
 
 const CarouselDots = ({ total, current, onDotClick }) => {
     return (
@@ -26,17 +26,14 @@ function ShowFavorites({ onFavoriteClick }) {
     const [touchEnd, setTouchEnd] = useState(null);
     const [isMobile, setIsMobile] = useState(false);
     const minSwipeDistance = 50;
-
-    // Detect screen size for mobile/desktop
     useEffect(() => {
         const handleResize = () => {
-            setIsMobile(window.innerWidth < 768); // Consider mobile if width is less than 768px
+            setIsMobile(window.innerWidth < 768);
         };
-        handleResize(); // Run once on load
+        handleResize();
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);
-
     useEffect(() => {
         const loadFavorites = () => {
             const saved = localStorage.getItem('weatherFavorites');
@@ -51,19 +48,15 @@ function ShowFavorites({ onFavoriteClick }) {
                 }
             }
         };
-
         loadFavorites();
-
         const handleStorageChange = () => {
             loadFavorites();
         };
-
         window.addEventListener('favoritesUpdated', handleStorageChange);
         return () => {
             window.removeEventListener('favoritesUpdated', handleStorageChange);
         };
     }, []);
-
     useEffect(() => {
         const updateFavoritesWeather = async () => {
             const weatherData = {};
@@ -77,42 +70,34 @@ function ShowFavorites({ onFavoriteClick }) {
             }
             setFavoritesWeather(weatherData);
         };
-
         if (favorites.length > 0) {
             updateFavoritesWeather();
             const interval = setInterval(updateFavoritesWeather, 300000);
             return () => clearInterval(interval);
         }
     }, [favorites]);
-
     const nextFavorite = () => {
-        setCurrentIndex((prevIndex) => 
+        setCurrentIndex((prevIndex) =>
             prevIndex === favorites.length - 1 ? 0 : prevIndex + 1
         );
     };
-
     const prevFavorite = () => {
-        setCurrentIndex((prevIndex) => 
+        setCurrentIndex((prevIndex) =>
             prevIndex === 0 ? favorites.length - 1 : prevIndex - 1
         );
     };
-
     const onTouchStart = (e) => {
         setTouchEnd(null);
         setTouchStart(e.targetTouches[0].clientX);
     };
-
     const onTouchMove = (e) => {
         setTouchEnd(e.targetTouches[0].clientX);
     };
-
     const onTouchEnd = () => {
         if (!touchStart || !touchEnd) return;
-        
         const distance = touchStart - touchEnd;
         const isLeftSwipe = distance > minSwipeDistance;
         const isRightSwipe = distance < -minSwipeDistance;
-        
         if (isLeftSwipe) {
             nextFavorite();
         }
@@ -120,9 +105,7 @@ function ShowFavorites({ onFavoriteClick }) {
             prevFavorite();
         }
     };
-
     if (!favorites.length) return null;
-
     const currentFavorite = favorites[currentIndex];
     const cityKey = `${currentFavorite.name}-${currentFavorite.lat}-${currentFavorite.lon}`;
 
@@ -130,7 +113,7 @@ function ShowFavorites({ onFavoriteClick }) {
         <div className="carousel-container">
             <div className="carousel-content">
                 {favorites.length > 1 && (
-                    <button 
+                    <button
                         className="carousel-button prev"
                         onClick={prevFavorite}
                         aria-label="Anterior favorito"
@@ -140,8 +123,7 @@ function ShowFavorites({ onFavoriteClick }) {
                         </svg>
                     </button>
                 )}
-                
-                <div 
+                <div
                     className="favorite-item"
                     onClick={() => onFavoriteClick(currentFavorite)}
                     onTouchStart={onTouchStart}
@@ -150,16 +132,15 @@ function ShowFavorites({ onFavoriteClick }) {
                     style={{ cursor: 'pointer' }}
                 >
                     {favoritesWeather[cityKey] && (
-                        <WeatherToday 
+                        <WeatherToday
                             currentWeather={favoritesWeather[cityKey]}
                             cityName={currentFavorite.name}
                             compact={true}
                         />
                     )}
                 </div>
-
                 {favorites.length > 1 && (
-                    <button 
+                    <button
                         className="carousel-button next"
                         onClick={nextFavorite}
                         aria-label="Siguiente favorito"
@@ -170,10 +151,9 @@ function ShowFavorites({ onFavoriteClick }) {
                     </button>
                 )}
             </div>
-
             {favorites.length > 1 && (
-                <CarouselDots 
-                    total={favorites.length} 
+                <CarouselDots
+                    total={favorites.length}
                     current={currentIndex}
                     onDotClick={setCurrentIndex}
                 />

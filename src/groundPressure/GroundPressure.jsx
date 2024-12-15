@@ -1,10 +1,9 @@
-import './groundPressure.css';
+import './GroundPressure.css';
 
 export function WeatherTodayGroundPressure({ currentWeather }) {
     if (!currentWeather?.main?.grnd_level) {
         return null;
     }
-
     const groundPressure = currentWeather.main.grnd_level;
 
     return (
@@ -13,7 +12,6 @@ export function WeatherTodayGroundPressure({ currentWeather }) {
                 <span className="ground-pressure-icon">🌡️</span>
                 <h3>PRESIÓN DEL SUELO</h3>
             </div>
-            
             <div className="ground-pressure-content">
                 <div className="ground-pressure-value">
                     {groundPressure}

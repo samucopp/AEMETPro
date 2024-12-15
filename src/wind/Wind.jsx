@@ -1,35 +1,28 @@
-import './wind.css';
+import './Wind.css';
 
 export function WeatherTodayWind({ currentWeather }) {
     if (!currentWeather?.wind) {
         return null;
     }
-
-    const windSpeed = Math.round(currentWeather.wind.speed * 3.6); 
+    const windSpeed = Math.round(currentWeather.wind.speed * 3.6);
     const windGust = currentWeather.wind.gust ? Math.round(currentWeather.wind.gust * 3.6) : null;
     const windDirection = currentWeather.wind.deg;
-
     return (
         <div className="wind-card">
             <div className="wind-header">
                 <span className="wind-icon">💨</span>
                 <h3>VIENTO</h3>
             </div>
-            
             <div className="wind-content">
                 <div className="wind-info">
                     <div className="wind-row">
                         <span className="wind-label">Viento</span>
                         <span className="wind-value">{windSpeed} km/h</span>
                     </div>
-                    
-                    
-                    
                     <div className="wind-row">
                         <span className="wind-label">Dirección</span>
                         <span className="wind-value">{windDirection}° SE</span>
                     </div>
-
                     <div className="wind-row">
                         {windGust ? (
                             <>
@@ -41,7 +34,6 @@ export function WeatherTodayWind({ currentWeather }) {
                         )}
                     </div>
                 </div>
-                
                 <div className="wind-compass">
                     <div className="compass-circle">
                         <div className="compass-arrow" style={{ transform: `rotate(${windDirection}deg)` }}>

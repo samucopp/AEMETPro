@@ -1,9 +1,7 @@
-
 import { useState, useEffect } from 'react';
 import SearchBar from './search-bar/SearchBar';
 import ShowFavorites from './favorites/ShowFavorites';
 import WeatherCardsCarousel from './weatherCarousel/WeatherCardsCarousel';
-import DropDownMenu from './drop-down-menu/DropDownMenu';
 import './App.css';
 
 export default function App() {
@@ -14,28 +12,23 @@ export default function App() {
         const saved = localStorage.getItem('weatherFavorites');
         return saved ? JSON.parse(saved) : [];
     });
-
     const handleCitySelect = (city) => {
         setSelectedCity(city);
         setSearchedCity(city);
         setShowFavorites(false);
     };
-
     const handleFavoriteClick = (favorite) => {
         setSelectedCity(favorite);
         setShowFavorites(false);
     };
-
     useEffect(() => {
         const handleFavoritesUpdate = () => {
             const saved = localStorage.getItem('weatherFavorites');
             if (saved) {
                 const parsedFavorites = JSON.parse(saved);
                 setFavorites(parsedFavorites);
-                
-                
                 if (searchedCity) {
-                    const updatedSearchedCity = parsedFavorites.find(fav => 
+                    const updatedSearchedCity = parsedFavorites.find(fav =>
                         fav.lat === searchedCity.lat && fav.lon === searchedCity.lon
                     );
                     if (updatedSearchedCity) {
@@ -44,7 +37,6 @@ export default function App() {
                 }
             }
         };
-
         window.addEventListener('favoritesUpdated', handleFavoritesUpdate);
         return () => {
             window.removeEventListener('favoritesUpdated', handleFavoritesUpdate);
@@ -55,14 +47,13 @@ export default function App() {
         <div className={`app-container ${selectedCity ? 'with-weather' : ''}`}>
             <div className="content-wrapper">
                 {showFavorites && (
-                    <ShowFavorites 
+                    <ShowFavorites
                         onFavoriteClick={handleFavoriteClick}
                     />
                 )}
                 <SearchBar onSubmit={handleCitySelect} />
-                
                 {selectedCity && (
-                    <WeatherCardsCarousel 
+                    <WeatherCardsCarousel
                         favorites={favorites}
                         activeCity={selectedCity}
                         searchedCity={searchedCity}

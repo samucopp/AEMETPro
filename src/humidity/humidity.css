@@ -1,4 +1,3 @@
-
 .current_humidity {
     background: rgba(45, 55, 72, 0.9);
     border-radius: 20px;
@@ -51,9 +50,8 @@
     font-family: system-ui, -apple-system, sans-serif;
 }
 
-/* Animación inicial del círculo */
 @keyframes progress {
     from {
-        stroke-dashoffset: 251.327; /* Valor de circumference */
+        stroke-dashoffset: 251.327;
     }
 }

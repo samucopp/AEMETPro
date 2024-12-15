@@ -1,6 +1,6 @@
-import Input from '../input/Input';
 import { getGeoLocation } from '../utils/ApiCalls';
 import { useRef, useState } from 'react';
+import Input from '../input/Input';
 import DropDownMenu from '../drop-down-menu/DropDownMenu';
 import './SearchBar.css';
 
@@ -8,7 +8,6 @@ function SearchBar({ onSubmit }) {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [cityList, setCityList] = useState([]);
-
     const searchTimeout = useRef(null);
     const handleSearch = async (city) => {
         if (!city.trim()) {
@@ -17,7 +16,6 @@ function SearchBar({ onSubmit }) {
         }
         setLoading(true);
         setError(null);
-
         try {
             const geoData = await getGeoLocation(city);
             setCityList(geoData);
@@ -30,17 +28,14 @@ function SearchBar({ onSubmit }) {
 
     const handleInputChange = (e) => {
         const newCity = e.target.value;
-
         setCityList([]);
         if (searchTimeout.current) {
             clearTimeout(searchTimeout.current);
         }
-
         searchTimeout.current = setTimeout(() => {
             handleSearch(newCity);
         }, 500);
     };
-
     const handleSubmit = city => {
         setCityList([]);
         onSubmit(city);

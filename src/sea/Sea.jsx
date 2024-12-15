@@ -1,10 +1,9 @@
-import './sea.css';
+import './Sea.css';
 
 export function WeatherTodaySeaLevel({ currentWeather }) {
     if (!currentWeather?.main?.sea_level) {
         return null;
     }
-
     const seaLevel = currentWeather.main.sea_level;
 
     return (
@@ -13,7 +12,6 @@ export function WeatherTodaySeaLevel({ currentWeather }) {
                 <span className="sealevel-icon">🌊</span>
                 <h3>NIVEL DEL MAR</h3>
             </div>
-            
             <div className="sealevel-content">
                 <div className="sealevel-value">
                     {seaLevel}

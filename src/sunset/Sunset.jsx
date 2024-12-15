@@ -1,20 +1,18 @@
-import './sunset.css';
+import './Sunset.css';
 
 export function WeatherTodaySunset({ datosAmanecer, zonaHoraria }) {
     if (!datosAmanecer?.sunset) {
         return null;
     }
-
     const horaAtardecer = new Date((datosAmanecer.sunset + zonaHoraria) * 1000)
-        .toLocaleTimeString('es-ES', { 
-            hour: '2-digit', 
+        .toLocaleTimeString('es-ES', {
+            hour: '2-digit',
             minute: '2-digit',
             hour12: false
         });
-
     const horaAmanecer = new Date((datosAmanecer.sunrise + zonaHoraria) * 1000)
-        .toLocaleTimeString('es-ES', { 
-            hour: '2-digit', 
+        .toLocaleTimeString('es-ES', {
+            hour: '2-digit',
             minute: '2-digit',
             hour12: false
         });
@@ -25,7 +23,6 @@ export function WeatherTodaySunset({ datosAmanecer, zonaHoraria }) {
                 <span className="sunset-icon">🌄</span>
                 <h3>ATARDECER</h3>
             </div>
-            
             <div className="sunset-content">
                 <div className="time-value">
                     {horaAtardecer}
@@ -35,7 +32,6 @@ export function WeatherTodaySunset({ datosAmanecer, zonaHoraria }) {
                         <div className="sun-position"></div>
                     </div>
                 </div>
-                
             </div>
         </div>
     );

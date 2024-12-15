@@ -10,10 +10,10 @@ import { WeatherTodayClouds } from '../clouds/Clouds';
 import { WeatherTodayRain } from '../rain/Rain';
 import { WeatherTodayFeellsLike } from '../feeling/Feeling';
 import { WeatherTodayPollution } from '../pollution/Pollution';
-import '../weatherCard/WeatherCard'
 import getWeatherIcon from '../utils/WeatherIcons';
 import getBackgroundImage from '../utils/Background';
 import './WeatherToday.css';
+import '../weatherCard/WeatherCard'
 
 
 function WeatherToday({ currentWeather, next24Hours, cityName, datosDelSistema, zonaHoraria, pollutionData }) {
@@ -21,14 +21,11 @@ function WeatherToday({ currentWeather, next24Hours, cityName, datosDelSistema, 
         if (currentWeather) {
             const weatherMain = currentWeather.weather[0].main;
             const appElement = document.querySelector('.app-container');
-
             const backgroundImage = getBackgroundImage(weatherMain);
-
             appElement.style.backgroundImage = backgroundImage;
             appElement.style.backgroundSize = 'cover';
             appElement.style.backgroundPosition = 'center';
             appElement.style.backgroundAttachment = 'fixed';
-
             return () => {
                 appElement.style.backgroundImage = '';
                 appElement.style.backgroundColor = '';
@@ -67,7 +64,6 @@ function WeatherToday({ currentWeather, next24Hours, cityName, datosDelSistema, 
                         {next24Hours.map((period) => {
                             const date = new Date(period.dt * 1000);
                             const hour = date.getHours();
-
                             return (
                                 <div key={period.dt} className="hourly-item">
                                     <div className="hourly-time">
@@ -90,54 +86,41 @@ function WeatherToday({ currentWeather, next24Hours, cityName, datosDelSistema, 
                             );
                         })}
                     </div>
-
-
                     {currentWeather && (
                         <div className="weather-metrics-container">
                             <WeatherTodayWind currentWeather={currentWeather} />
                             <WeatherTodayRain currentWeather={currentWeather} />
                         </div>
                     )}
-
-                    
                     {currentWeather && (
                         <div className="weather-metrics-container">
                             <WeatherTodayClouds currentWeather={currentWeather} />
                             <WeatherTodayVisibility currentWeather={currentWeather} />
                         </div>
                     )}
-
-                    
                     {currentWeather && (
                         <div className="weather-metrics-container">
                             <WeatherTodayHumidity currentWeather={currentWeather} />
                             <WeatherTodayFeellsLike currentWeather={currentWeather} />
                         </div>
                     )}
-
-                    
                     {datosDelSistema && zonaHoraria && (
                         <div className="weather-metrics-container">
                             <WeatherTodayRise datosAmanecer={datosDelSistema} zonaHoraria={zonaHoraria} />
                             <WeatherTodaySunset datosAmanecer={datosDelSistema} zonaHoraria={zonaHoraria} />
                         </div>
                     )}
-
-                    
                     {currentWeather && (
                         <div className="weather-metrics-container">
                             <WeatherTodayGroundPressure currentWeather={currentWeather} />
                             <WeatherTodaySeaLevel currentWeather={currentWeather} />
                         </div>
                     )}
-
-                    
                     {pollutionData && (
                         <div className="weather-metrics-container">
                             <WeatherTodayPollution data={pollutionData} />
                         </div>
                     )}
-
                 </>
             )
             }

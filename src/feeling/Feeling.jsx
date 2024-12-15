@@ -1,4 +1,4 @@
-import './feeling.css';
+import './Feeling.css';
 
 export function WeatherTodayFeellsLike({ currentWeather }) {
     if (!currentWeather || !currentWeather.main) {
@@ -17,6 +17,6 @@ export function WeatherTodayFeellsLike({ currentWeather }) {
                     <span className="feels-unit">°C</span>
                 </div>
             </div>
-        </div>      
+        </div>
     );
 }

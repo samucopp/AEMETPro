@@ -1,5 +1,4 @@
-import React from 'react';
-import './pollution.css';
+import './Pollution.css';
 
 const AirQualityIndex = ({ aqi }) => {
   const getAQIStatus = (aqi) => {
@@ -18,7 +17,6 @@ const AirQualityIndex = ({ aqi }) => {
         return { text: 'No disponible', className: '' };
     }
   };
-
   const status = getAQIStatus(aqi);
 
   return (
@@ -33,15 +31,12 @@ const AirQualityIndex = ({ aqi }) => {
   );
 };
 
-// Cambiamos el nombre del componente a WeatherTodayPollution
 const WeatherTodayPollution = ({ data }) => {
   if (!data || !data.list || data.list.length === 0) {
     return <div className="current_pollution">No hay datos disponibles</div>;
   }
-
   const pollutionData = data.list[0];
   const { main, components } = pollutionData;
-
   const formatValue = (value) => {
     return value.toFixed(2);
   };
@@ -51,9 +46,7 @@ const WeatherTodayPollution = ({ data }) => {
       <div className="pollution-header">
         <h3>Calidad del Aire</h3>
       </div>
-      
       <AirQualityIndex aqi={main.aqi} />
-      
       <div className="pollution-content">
         <div className="pollution-item">
           <span className="pollution-label">CO</span>
@@ -62,7 +55,6 @@ const WeatherTodayPollution = ({ data }) => {
             <span className="pollution-unit">μg/m³</span>
           </span>
         </div>
-
         <div className="pollution-item">
           <span className="pollution-label">NO₂</span>
           <span className="pollution-value">
@@ -70,7 +62,6 @@ const WeatherTodayPollution = ({ data }) => {
             <span className="pollution-unit">μg/m³</span>
           </span>
         </div>
-
         <div className="pollution-item">
           <span className="pollution-label">O₃</span>
           <span className="pollution-value">
@@ -78,7 +69,6 @@ const WeatherTodayPollution = ({ data }) => {
             <span className="pollution-unit">μg/m³</span>
           </span>
         </div>
-
         <div className="pollution-item">
           <span className="pollution-label">SO₂</span>
           <span className="pollution-value">
@@ -86,7 +76,6 @@ const WeatherTodayPollution = ({ data }) => {
             <span className="pollution-unit">μg/m³</span>
           </span>
         </div>
-
         <div className="pollution-item">
           <span className="pollution-label">PM2.5</span>
           <span className="pollution-value">
@@ -94,7 +83,6 @@ const WeatherTodayPollution = ({ data }) => {
             <span className="pollution-unit">μg/m³</span>
           </span>
         </div>
-
         <div className="pollution-item">
           <span className="pollution-label">PM10</span>
           <span className="pollution-value">
@@ -102,7 +90,6 @@ const WeatherTodayPollution = ({ data }) => {
             <span className="pollution-unit">μg/m³</span>
           </span>
         </div>
-
         <div className="pollution-item">
           <span className="pollution-label">NH₃</span>
           <span className="pollution-value">
@@ -110,7 +97,6 @@ const WeatherTodayPollution = ({ data }) => {
             <span className="pollution-unit">μg/m³</span>
           </span>
         </div>
-
         <div className="pollution-item">
           <span className="pollution-label">NO</span>
           <span className="pollution-value">
@@ -123,6 +109,5 @@ const WeatherTodayPollution = ({ data }) => {
   );
 };
 
-// Exportamos el componente tanto por defecto como con nombre
 export { WeatherTodayPollution };
 export default WeatherTodayPollution;

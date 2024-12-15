@@ -1,17 +1,15 @@
-import './sunrise.css';
+import './Sunrise.css';
 
 export function WeatherTodayRise({ datosAmanecer, zonaHoraria }) {
     if (!datosAmanecer?.sunrise) {
         return null;
     }
-
     const horaAmanecer = new Date((datosAmanecer.sunrise + zonaHoraria) * 1000)
         .toLocaleTimeString('es-ES', { 
             hour: '2-digit', 
             minute: '2-digit',
             hour12: false
         });
-
     const horaAtardecer = new Date((datosAmanecer.sunset + zonaHoraria) * 1000)
         .toLocaleTimeString('es-ES', { 
             hour: '2-digit', 
@@ -25,7 +23,6 @@ export function WeatherTodayRise({ datosAmanecer, zonaHoraria }) {
                 <span className="sunrise-icon">🌅</span>
                 <h3>SALIDA DEL SOL</h3>
             </div>
-            
             <div className="sunrise-content">
                 <div className="time-value">
                     {horaAmanecer}
@@ -35,7 +32,6 @@ export function WeatherTodayRise({ datosAmanecer, zonaHoraria }) {
                         <div className="sun-marker"></div>
                     </div>
                 </div>
-                
             </div>
         </div>
     );

@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import WeatherCard from '../weatherCard/WeatherCard';
-import './weatherCardsCarousel.css';
+import './WeatherCardsCarousel.css';
 
-const CarouselDots = ({ total, current, onDotClick }) => { 
+const CarouselDots = ({ total, current, onDotClick }) => {
     return (
         <div className="carousel-Card-dots">
             {Array.from({ length: total }, (_, index) => (
@@ -22,33 +22,29 @@ function WeatherCardsCarousel({ favorites, activeCity, searchedCity }) {
     const [allCities, setAllCities] = useState([]);
     const [touchStart, setTouchStart] = useState(null);
     const [touchEnd, setTouchEnd] = useState(null);
-
     const minSwipeDistance = 50;
-
     useEffect(() => {
         const cities = [...favorites];
-        if (searchedCity && !favorites.some(fav => 
+        if (searchedCity && !favorites.some(fav =>
             fav.lat === searchedCity.lat && fav.lon === searchedCity.lon
         )) {
             cities.unshift(searchedCity);
         }
-        
         setAllCities(cities);
-
-        const activeIndex = cities.findIndex(city => 
+        const activeIndex = cities.findIndex(city =>
             city.lat === activeCity.lat && city.lon === activeCity.lon
         );
         setCurrentIndex(activeIndex !== -1 ? activeIndex : 0);
     }, [favorites, searchedCity, activeCity]);
 
     const nextCard = () => {
-        setCurrentIndex((prevIndex) => 
+        setCurrentIndex((prevIndex) =>
             prevIndex === allCities.length - 1 ? 0 : prevIndex + 1
         );
     };
 
     const prevCard = () => {
-        setCurrentIndex((prevIndex) => 
+        setCurrentIndex((prevIndex) =>
             prevIndex === 0 ? allCities.length - 1 : prevIndex - 1
         );
     };
@@ -64,11 +60,9 @@ function WeatherCardsCarousel({ favorites, activeCity, searchedCity }) {
 
     const onTouchEnd = () => {
         if (!touchStart || !touchEnd) return;
-        
         const distance = touchStart - touchEnd;
         const isLeftSwipe = distance > minSwipeDistance;
         const isRightSwipe = distance < -minSwipeDistance;
-        
         if (isLeftSwipe) {
             nextCard();
         }
@@ -76,14 +70,13 @@ function WeatherCardsCarousel({ favorites, activeCity, searchedCity }) {
             prevCard();
         }
     };
-
     if (!allCities.length) return null;
 
     return (
         <div className="weather-cards-carousel">
             <div className="carousel-content">
                 {allCities.length > 1 && (
-                    <button 
+                    <button
                         className="carousel-nav prev"
                         onClick={prevCard}
                         aria-label="Anterior ciudad"
@@ -93,8 +86,7 @@ function WeatherCardsCarousel({ favorites, activeCity, searchedCity }) {
                         </svg>
                     </button>
                 )}
-
-                <div 
+                <div
                     className="card-container"
                     onTouchStart={onTouchStart}
                     onTouchMove={onTouchMove}
@@ -102,9 +94,8 @@ function WeatherCardsCarousel({ favorites, activeCity, searchedCity }) {
                 >
                     <WeatherCard city={allCities[currentIndex]} />
                 </div>
-
                 {allCities.length > 1 && (
-                    <button 
+                    <button
                         className="carousel-nav next"
                         onClick={nextCard}
                         aria-label="Siguiente ciudad"
@@ -115,10 +106,9 @@ function WeatherCardsCarousel({ favorites, activeCity, searchedCity }) {
                     </button>
                 )}
             </div>
-
             {allCities.length > 1 && (
-                <CarouselDots 
-                    total={allCities.length} 
+                <CarouselDots
+                    total={allCities.length}
                     current={currentIndex}
                     onDotClick={setCurrentIndex}
                 />

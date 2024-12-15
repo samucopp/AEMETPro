@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import './Map.css';
@@ -31,13 +31,10 @@ export default function Map({ city }) {
             url: `https://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=98122e0b77bec612bce873d52e0343a4`,
         },
     ];
-
     const [currentIndex, setCurrentIndex] = useState(0);
-
     const nextMap = () => {
         setCurrentIndex((prevIndex) => (prevIndex + 1) % maps.length);
     };
-
     const prevMap = () => {
         setCurrentIndex((prevIndex) =>
             prevIndex === 0 ? maps.length - 1 : prevIndex - 1

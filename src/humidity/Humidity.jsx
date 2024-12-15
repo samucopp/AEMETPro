@@ -1,20 +1,16 @@
 import { useEffect, useState } from 'react';
-import './humidity.css';
+import './Humidity.css';
 
 export function WeatherTodayHumidity({ currentWeather }) {
     const [percentage, setPercentage] = useState(0);
-    
     useEffect(() => {
         if (currentWeather?.main?.humidity) {
             setPercentage(currentWeather.main.humidity);
         }
     }, [currentWeather]);
-
     if (!currentWeather || !currentWeather.main) {
         return null;
     }
-
-    // Calcular los valores para el círculo SVG
     const radius = 40;
     const circumference = 2 * Math.PI * radius;
     const strokeDashoffset = circumference - (percentage / 100) * circumference;
@@ -42,7 +38,7 @@ export function WeatherTodayHumidity({ currentWeather }) {
                             cx="60"
                             cy="60"
                             r={radius}
-                            stroke="#38BDF8" // Color azul más claro para humedad
+                            stroke="#38BDF8"
                             strokeWidth="8"
                             fill="none"
                             strokeLinecap="round"
@@ -65,6 +61,6 @@ export function WeatherTodayHumidity({ currentWeather }) {
                     </svg>
                 </div>
             </div>
-        </div>  
+        </div>
     );
 }

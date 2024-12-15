@@ -1,12 +1,11 @@
-import './pressure.css';
+import './Pressure.css';
 
 export function WeatherTodayPressure({ currentWeather }) {
     if (!currentWeather?.main?.pressure) {
         return null;
     }
-
     const pressure = currentWeather.main.pressure;
-    const rotationDegrees = ((pressure - 950) / (1050 - 950)) * 180 - 90; 
+    const rotationDegrees = ((pressure - 950) / (1050 - 950)) * 180 - 90;
 
     return (
         <div className="pressure-card">
@@ -14,7 +13,6 @@ export function WeatherTodayPressure({ currentWeather }) {
                 <span className="pressure-icon">🌡️</span>
                 <h3>PRESIÓN</h3>
             </div>
-            
             <div className="pressure-content">
                 <div className="pressure-value">
                     {pressure}
