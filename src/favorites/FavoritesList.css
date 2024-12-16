@@ -34,8 +34,12 @@
 }
 
 .favorite-item .current-weather__city {
-    font-size: 20px;
+    font-size: 28px;
     margin-bottom: 12px;
+    text-align: left;
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
 }
 
 .favorite-item .current-weather__temp {
@@ -117,6 +121,7 @@
         max-width: 500px;
     }
 
+   
     .favorite-item .current-weather {
         padding: 16px;
     }

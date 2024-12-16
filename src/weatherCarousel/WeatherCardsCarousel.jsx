@@ -50,15 +50,27 @@ function WeatherCardsCarousel({ favorites, activeCity, searchedCity }) {
     };
 
     const onTouchStart = (e) => {
+        // Verificar si el evento viene de un elemento scrollable horizontal
+        if (e.target.closest('.scrollable-horizontal')) {
+            return;
+        }
         setTouchEnd(null);
         setTouchStart(e.targetTouches[0].clientX);
     };
 
     const onTouchMove = (e) => {
+        // Verificar si el evento viene de un elemento scrollable horizontal
+        if (e.target.closest('.scrollable-horizontal')) {
+            return;
+        }
         setTouchEnd(e.targetTouches[0].clientX);
     };
 
-    const onTouchEnd = () => {
+    const onTouchEnd = (e) => {
+        // Verificar si el evento viene de un elemento scrollable horizontal
+        if (e.target.closest('.scrollable-horizontal')) {
+            return;
+        }
         if (!touchStart || !touchEnd) return;
         const distance = touchStart - touchEnd;
         const isLeftSwipe = distance > minSwipeDistance;
@@ -70,6 +82,7 @@ function WeatherCardsCarousel({ favorites, activeCity, searchedCity }) {
             prevCard();
         }
     };
+    
     if (!allCities.length) return null;
 
     return (

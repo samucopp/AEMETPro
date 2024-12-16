@@ -20,6 +20,13 @@
     width: 100%;
     box-sizing: border-box;
     margin-bottom: 8px;
+   
+}
+
+.daily-compact:hover{
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.15);
+
 }
 
 .daily-compact:last-child {
@@ -62,10 +69,7 @@
     transition: transform 0.2s;
 }
 
-.forecast-hour:hover {
-    transform: translateY(-2px);
-    background: rgba(255, 255, 255, 0.1);
-}
+
 
 .forecast-hour__time {
     font-size: 14px;
