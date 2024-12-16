@@ -10,12 +10,18 @@ import { WeatherTodaySunset } from '../sunset/Sunset';
 import getWeatherIcon from '../utils/WeatherIcons';
 import './WeatherModal.css';
 
-
 function WeatherModal({ isOpen, onClose, dayData, date }) {
     if (!isOpen) return null;
     const mainData = dayData[0];
     const currentHour = new Date().getHours();
     const next24Hours = dayData.filter((item, index) => index < 8);
+
+    
+    const tempMin = Math.min(...next24Hours.map(hour => hour.main.temp_min));
+    const tempMax = Math.max(...next24Hours.map(hour => hour.main.temp_max));
+
+    if (!mainData) return null;
+
     return (
         <div className="modal-overlay" onClick={onClose}>
             <div className="modal-content" onClick={e => e.stopPropagation()}>
@@ -37,7 +43,7 @@ function WeatherModal({ isOpen, onClose, dayData, date }) {
                                 className="current-weather__icon"
                             />
                             <span className="current-weather__temp">
-                                {Math.round(mainData.main.temp)}°
+                                {Math.round(tempMin)}° / {Math.round(tempMax)}°
                             </span>
                         </div>
                         <div className="current-weather__details">
@@ -58,9 +64,9 @@ function WeatherModal({ isOpen, onClose, dayData, date }) {
                                     {hour === currentHour ? 'Ahora' : `${hour}:00`}
                                 </div>
                                 <img
-                                    src={getWeatherIcon(mainData.weather[0].id)}
+                                    src={getWeatherIcon(period.weather[0].id)}
                                     alt="Weather Icon"
-                                    className="current-weather__icon"
+                                    className="hourly-weather-icon"
                                 />
                                 <div className="hourly-temp">
                                     {Math.round(period.main.temp)}°

@@ -225,6 +225,13 @@
     border-radius: 3px;
 }
 
+.hourly-weather-icon
+{
+    height: 40px;
+    width: 40px;
+    filter: invert(100%);
+}
+
 
 @media (max-width: 768px) {
     .modal-overlay {

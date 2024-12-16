@@ -34,7 +34,7 @@ function WeatherFiveDays({ dailyForecast }) {
                             <div className="daily-compact__date">
                                 {date.toLocaleDateString('es-ES', { weekday: 'short' })}
                             </div>
-                            <div className="daily-compact__forecasts">
+                            <div className="daily-compact__forecasts scrollable-horizontal">
                                 {forecasts.map((forecast, idx) => {
                                     const hour = new Date(forecast.dt * 1000).getHours();
                                     return (

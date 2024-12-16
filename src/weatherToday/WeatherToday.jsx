@@ -15,7 +15,6 @@ import getBackgroundImage from '../utils/Background';
 import './WeatherToday.css';
 import '../weatherCard/WeatherCard'
 
-
 function WeatherToday({ currentWeather, next24Hours, cityName, datosDelSistema, zonaHoraria, pollutionData }) {
     useEffect(() => {
         if (currentWeather) {
@@ -41,26 +40,25 @@ function WeatherToday({ currentWeather, next24Hours, cityName, datosDelSistema, 
                         <h2 className="current-weather__city">
                             {cityName}
                         </h2>
-                        <img
-                            src={getWeatherIcon(currentWeather.weather[0].id)}
-                            alt="Weather Icon"
-                            className="current-weather__icon"
-                        />
                         <span className="current-weather__temp">
                             {Math.round(currentWeather.main.temp)}°
                         </span>
                     </div>
-                    <div className="current-weather__details">
+                    <div className="currente-description_details">
+                    <div className="current-weather__description">
                         <p>{currentWeather.weather[0].description}</p>
-                        <p>Humedad: {currentWeather.main.humidity}%</p>
-                        <p>Viento: {Math.round(currentWeather.wind.speed * 3.6)} km/h</p>
+                    </div>
+                    <div className="current-weather__details">
+                        <p>Min: {Math.round(currentWeather.main.temp_min)}°</p>
+                        <p>Máx: {Math.round(currentWeather.main.temp_max)}°</p>
+                    </div>
                     </div>
                 </div>
             </div>
             {next24Hours && (
                 <>
                     <div className="section-title">Próximas 24 horas</div>
-                    <div className="hourly-forecast">
+                    <div className="hourly-forecast scrollable-horizontal">
                         {next24Hours.map((period) => {
                             const date = new Date(period.dt * 1000);
                             const hour = date.getHours();
@@ -122,9 +120,8 @@ function WeatherToday({ currentWeather, next24Hours, cityName, datosDelSistema, 
                         </div>
                     )}
                 </>
-            )
-            }
-        </div >
+            )}
+        </div>
     );
 }
 
