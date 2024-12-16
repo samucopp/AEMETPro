@@ -1,3 +1,4 @@
+import { FaTemperatureHalf } from "react-icons/fa6";
 import './Feeling.css';
 
 export function WeatherTodayFeellsLike({ currentWeather }) {
@@ -8,7 +9,7 @@ export function WeatherTodayFeellsLike({ currentWeather }) {
     return (
         <div className="current_feelsLike">
             <div className="feels-header">
-                <span className="feels-icon">🌡️</span>
+                <FaTemperatureHalf className="feels-icon"/>
                 <h3>SENSACIÓN TÉRMICA</h3>
             </div>
             <div className="feels-content">

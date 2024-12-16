@@ -17,10 +17,10 @@
     align-items: center;
     gap: 10px;
     margin-bottom: 20px;
+    color: #8b939c;
 }
 
 .feels-header h3 {
-    color: #8b939c;
     font-size: 14px;
     text-transform: uppercase;
     letter-spacing: 1px;

@@ -1,3 +1,4 @@
+import { FaWind } from "react-icons/fa";
 import './Wind.css';
 
 export function WeatherTodayWind({ currentWeather }) {
@@ -10,7 +11,7 @@ export function WeatherTodayWind({ currentWeather }) {
     return (
         <div className="wind-card">
             <div className="wind-header">
-                <span className="wind-icon">💨</span>
+                <FaWind className="wind-icon"/>
                 <h3>VIENTO</h3>
             </div>
             <div className="wind-content">

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { BsCloudsFill } from "react-icons/bs";
 import './Clouds.css';
 
 export function WeatherTodayClouds({ currentWeather }) {
@@ -18,7 +19,7 @@ export function WeatherTodayClouds({ currentWeather }) {
     return (
         <div className="current_clouds">
             <div className="clouds-header">
-                <span className="clouds-icon">☁️</span>
+                <BsCloudsFill className="clouds-icon"/>
                 <h3>NUBES</h3>
             </div>
             <div className="clouds-content">

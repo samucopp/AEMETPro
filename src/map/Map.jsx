@@ -1,32 +1,37 @@
 import { useState } from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
+import { IoUmbrella } from "react-icons/io5";
+import { BsCloudsFill } from "react-icons/bs";
+import { IoSpeedometer } from "react-icons/io5";
+import { FaWind } from "react-icons/fa";
+import { FaTemperatureHalf } from "react-icons/fa6";
 import 'leaflet/dist/leaflet.css';
 import './Map.css';
 
 export default function Map({ city }) {
     const maps = [
         {
-            name: 'Precipitaciones',
+            name: <><IoUmbrella className='icons' />{'Precipitaciones'}</>,
             className: 'precipitation-map',
             url: `https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=98122e0b77bec612bce873d52e0343a4`,
         },
         {
-            name: 'Nubes',
+            name: <><BsCloudsFill className='icons'/>{'Nubes'}</>,
             className: 'clouds-map',
             url: `https://tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid=98122e0b77bec612bce873d52e0343a4`,
         },
         {
-            name: 'Presión a nivel del mar',
+            name: <><IoSpeedometer className='icons'/>{'Presión a nivel del mar'}</>,
             className: 'pressure-map',
             url: `https://tile.openweathermap.org/map/pressure_new/{z}/{x}/{y}.png?appid=98122e0b77bec612bce873d52e0343a4`,
         },
         {
-            name: 'Velocidad del viento',
+            name: <><FaWind className='icons'/>{'Velocidad del viento'}</>,
             className: 'wind-map',
             url: `https://tile.openweathermap.org/map/wind_new/{z}/{x}/{y}.png?appid=98122e0b77bec612bce873d52e0343a4`,
         },
         {
-            name: 'Temperatura',
+            name: <><FaTemperatureHalf className='icons'/>{'Temperatura'}</>,
             className: 'temp-map',
             url: `https://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=98122e0b77bec612bce873d52e0343a4`,
         },

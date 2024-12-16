@@ -5,8 +5,8 @@
     color: white;
     flex: 1;
     margin-bottom: 12px;
-    width: 200px; /* Ancho fijo */
-    height: 225px; /* Alto fijo */
+    width: 200px;
+    height: 200px;
     display: flex;
     flex-direction: column;
 }
@@ -15,10 +15,10 @@
     align-items: center;
     gap: 10px;
     margin-bottom: 20px;
+    color: #8b939c;
 }
 
 .sunrise-header h3 {
-    color: #8b939c;
     font-size: 14px;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -37,32 +37,6 @@
     font-size: 42px;
     font-weight: 500;
     text-align: center;
-}
-
-.sunrise-graph {
-    width: 100%;
-    height: 80px;
-    position: relative;
-    margin: 10px 0;
-}
-
-.sun-path {
-    position: relative;
-    width: 100%;
-    height: 60px;
-    overflow: hidden;
-}
-
-.sun-path::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 5%;
-    right: 5%;
-    height: 100px;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-    border-bottom: none;
 }
 
 .sun-marker {
@@ -93,13 +67,5 @@
     
     .sunset-time {
         font-size: 14px;
-    }
-    
-    .sunrise-graph {
-        height: 70px;
-    }
-    
-    .sun-path {
-        height: 50px;
     }
 }

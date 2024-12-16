@@ -1,3 +1,4 @@
+import { IoMdEye } from "react-icons/io";
 import './Visibility.css';
 
 export function WeatherTodayVisibility({ currentWeather }) {
@@ -9,7 +10,7 @@ export function WeatherTodayVisibility({ currentWeather }) {
     return (
         <div className="current_visibility">
             <div className="visibility-header">
-                <span className="visibility-icon">👁️</span>
+                <IoMdEye className="visibility-icon"/>
                 <h3>VISIBILIDAD</h3>
             </div>
             <div className="visibility-content">

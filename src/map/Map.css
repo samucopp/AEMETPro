@@ -21,12 +21,24 @@
     border-style: none;
 }
 
+.icons {
+    font-size: 1rem;
+    margin-right: 5px;
+}
+
+.iconspath {
+    height: 20px;
+}
+
 .map-title {
     font-size: 14px;
     color: #8b939c;
     text-transform: uppercase;
     letter-spacing: 1px;
     margin: 24px 0 12px 0;
+    display:flex;
+    align-items: center;
+    justify-content: flex-start;
 }
 
 .arrow {

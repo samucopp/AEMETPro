@@ -1,3 +1,4 @@
+import { BsSunriseFill } from "react-icons/bs";
 import './Sunrise.css';
 
 export function WeatherTodayRise({ datosAmanecer, zonaHoraria }) {
@@ -20,17 +21,12 @@ export function WeatherTodayRise({ datosAmanecer, zonaHoraria }) {
     return (
         <div className="sunrise-card">
             <div className="sunrise-header">
-                <span className="sunrise-icon">🌅</span>
-                <h3>SALIDA DEL SOL</h3>
+                <BsSunriseFill className="sunrise-icon"/>
+                <h3>AMANECER</h3>
             </div>
             <div className="sunrise-content">
                 <div className="time-value">
                     {horaAmanecer}
-                </div>
-                <div className="sunrise-graph">
-                    <div className="sun-path">
-                        <div className="sun-marker"></div>
-                    </div>
                 </div>
             </div>
         </div>

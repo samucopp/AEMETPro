@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { GiWaterDrop } from "react-icons/gi";
 import './Humidity.css';
 
 export function WeatherTodayHumidity({ currentWeather }) {
@@ -18,7 +19,7 @@ export function WeatherTodayHumidity({ currentWeather }) {
     return (
         <div className="current_humidity">
             <div className="humidity-header">
-                <span className="humidity-icon">💧</span>
+                <GiWaterDrop className="humidity-icon"/>
                 <h3>HUMEDAD</h3>
             </div>
             <div className="humidity-content">

@@ -95,12 +95,12 @@ function WeatherToday({ currentWeather, next24Hours, cityName, datosDelSistema, 
                     {currentWeather && (
                         <div className="weather-metrics-container">
                             <WeatherTodayClouds currentWeather={currentWeather} />
-                            <WeatherTodayVisibility currentWeather={currentWeather} />
+                            <WeatherTodayHumidity currentWeather={currentWeather} />
                         </div>
                     )}
                     {currentWeather && (
                         <div className="weather-metrics-container">
-                            <WeatherTodayHumidity currentWeather={currentWeather} />
+                            <WeatherTodayVisibility currentWeather={currentWeather} />
                             <WeatherTodayFeellsLike currentWeather={currentWeather} />
                         </div>
                     )}

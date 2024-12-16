@@ -1,3 +1,4 @@
+import { IoUmbrella } from "react-icons/io5";
 import './Rain.css';
 
 export function WeatherTodayRain({ currentWeather, forecastWeather }) {
@@ -10,7 +11,7 @@ export function WeatherTodayRain({ currentWeather, forecastWeather }) {
     return (
         <div className="rain-card">
             <div className="rain-header">
-                <span className="rain-icon">🌧️</span>
+                <IoUmbrella className="rain-icon"/>
                 <h3>PRECIPITACIÓN</h3>
             </div>
             <div className="rain-content">
