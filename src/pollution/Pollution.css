@@ -1,9 +1,15 @@
-.weather-metrics-container,
 .pollution-container {
     display: flex;
     flex-direction: column;
     gap: 12px;
     margin-bottom: 16px;
+    width: 100%;
+}
+
+.weather-metrics-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
     width: 100%;
 }
 

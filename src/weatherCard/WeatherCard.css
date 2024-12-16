@@ -53,12 +53,18 @@
 
 .visibility-humidity-container,
 .sun-container,
-.pressure-container,
-.weather-metrics-container {
+.pressure-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;
     margin-bottom: 16px;
+    width: 100%;
+}
+
+.weather-metrics-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
     width: 100%;
 }
 

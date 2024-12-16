@@ -81,10 +81,6 @@ function WeatherModal({ isOpen, onClose, dayData, date }) {
                     <WeatherTodayClouds currentWeather={mainData} />
                     <WeatherTodayHumidity currentWeather={mainData} />
                 </div>
-                <div className="sun-container">
-                    <WeatherTodayRise currentWeather={mainData} />
-                    <WeatherTodaySunset currentWeather={mainData} />
-                </div>
                 <div className="weather-metrics-container">
                     <WeatherTodayFeellsLike currentWeather={mainData} />
                     <WeatherTodayVisibility currentWeather={mainData} />

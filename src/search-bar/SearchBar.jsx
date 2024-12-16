@@ -44,7 +44,9 @@ function SearchBar({ onSubmit }) {
     return (
         <div className="search-container">
             <div className="page-title">
+                <a href='/'>
                 <h1>Pronostik</h1>
+                </a>
             </div>
             <div className="search-bar">
                 <Input

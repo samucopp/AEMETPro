@@ -5,6 +5,7 @@
   position: relative;
   overflow-x: hidden;
   transition: background-image 0.3s ease;
+  background-image: url('/images/fondo-principal.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

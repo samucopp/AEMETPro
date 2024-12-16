@@ -107,5 +107,5 @@
 }
 
 .map-container .base-map {
-    filter: invert(90%) hue-rotate(200deg);
+    filter: invert(90%) hue-rotate(210deg) saturate(3.5);
 }
