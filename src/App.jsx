@@ -46,11 +46,13 @@ export default function App() {
     return (
         <div className={`app-container ${selectedCity ? 'with-weather' : ''}`}>
             <div className="content-wrapper">
-                {showFavorites && (
-                    <ShowFavorites
-                        onFavoriteClick={handleFavoriteClick}
-                    />
-                )}
+                <div className={`fav-container ${selectedCity ? 'hidden' : ''}`}>
+                    {showFavorites && (
+                        <ShowFavorites
+                            onFavoriteClick={handleFavoriteClick}
+                        />
+                    )}
+                </div>
                 <SearchBar onSubmit={handleCitySelect} />
                 {selectedCity && (
                     <WeatherCardsCarousel

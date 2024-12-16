@@ -34,9 +34,10 @@
     align-items: center;
     justify-content: center;
     z-index: 10000;
-    background: rgba(0, 0, 0, 0.5);
     border-radius: 50%;
     outline: none;
+    transition: transform 0.2s;
+    background: none;
 }
 
 .carousel-nav {
@@ -51,7 +52,7 @@
 }
 
 .carousel-nav:hover {
-    background: rgba(0, 0, 0, 0.7);
+    transform:scale(2) translateY(-25%);
 }
 
 .carousel-nav.prev {
@@ -98,24 +99,17 @@
     }
 
     .carousel-nav {
-        width: 50px;
-        height: 50px;
-    }
-
-    .carousel-nav.prev {
-        left: 8px;
-        width: 60px;
+        width: 20px;
+        height: 20px;
+        background: none;
+        padding: 0;
     }
 
     .carousel-nav.next {
-        right: 8px;
-        width: 60px;
+        right: 2px;
     }
-}
 
-@media (max-width: 480px) {
-    .carousel-nav {
-        width: 60px;
-        height: 60px;
+    .carousel-nav.prev {
+        left: 2px;
     }
 }

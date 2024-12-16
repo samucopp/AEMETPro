@@ -45,13 +45,13 @@ function WeatherToday({ currentWeather, next24Hours, cityName, datosDelSistema, 
                         </span>
                     </div>
                     <div className="currente-description_details">
-                    <div className="current-weather__description">
-                        <p>{currentWeather.weather[0].description}</p>
-                    </div>
-                    <div className="current-weather__details">
-                        <p>Min: {Math.round(currentWeather.main.temp_min)}°</p>
-                        <p>Máx: {Math.round(currentWeather.main.temp_max)}°</p>
-                    </div>
+                        <div className="current-weather__description">
+                            <p>{currentWeather.weather[0].description}</p>
+                        </div>
+                        <div className="current-weather__details">
+                            <p>Min: {Math.round(currentWeather.main.temp_min)}°</p>
+                            <p>Máx: {Math.round(currentWeather.main.temp_max)}°</p>
+                        </div>
                     </div>
                 </div>
             </div>

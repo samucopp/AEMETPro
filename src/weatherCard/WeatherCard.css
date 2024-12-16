@@ -3,7 +3,7 @@
     color: white;
     padding: 16px;
     border-radius: 16px;
-    width: 90%;
+    width: 80%;
     box-sizing: border-box;
     margin: 0 auto;
     max-width: 90%;
@@ -53,14 +53,7 @@
 
 .visibility-humidity-container,
 .sun-container,
-.pressure-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    margin-bottom: 16px;
-    width: 100%;
-}
-
+.pressure-container,
 .weather-metrics-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -75,6 +68,7 @@
     background: rgba(255, 255, 255, 0.1);
     border-radius: 12px;
     padding: 20px;
+    margin-bottom: 20px;
     width: 100%;
     box-sizing: border-box;
     transition: transform 0.2s;
