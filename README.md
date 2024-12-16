@@ -37,7 +37,7 @@
 
 5. Inicia la aplicación:
    ```bash
-   npm start
+   npm run dev
    ```
 6. Abre [http://localhost:3000](http://localhost:3000) para ver la aplicación en tu navegador.
 
